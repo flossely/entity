@@ -1,2 +1,2 @@
-# profile
-Generic HSIS profile engine.
+# Profile Engine
+Generic website profile engine.
