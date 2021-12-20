@@ -3,7 +3,7 @@ $id = $_POST['id'];
 $type = $_POST['type'];
 if ($type == 'stats') {
     $mode = $_POST['mode'];
-    if (!file_exists($id) && !file_exists('.backup/'.$id)) {
+    if (!file_exists($id)) {
         mkdir($id);
         chmod($id, 0777);
         file_put_contents($id.'/mode', $mode);
