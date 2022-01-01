@@ -1,23 +1,37 @@
 <?php
 $dir = '.';
 $mode = $_POST['mode'];
-if ($mode == 'merge') {
-    $id = $_POST['entity'];
-    $concat = '';
+$id = $_POST['id'];
+$data = $_POST['data'];
+$sequence = explode(';', $data);
+$count = count($sequence);
+$last = $count - 1;
+if ($mode == 'init') {
+    foreach ($data as $key=>$value) {
+        mkdir($value);
+        chmod($value, 0777);
+        file_put_contents($value.'/rating', 0);
+        chmod($value.'/rating', 0777);
+        file_put_contents($value.'/mode', 0);
+        chmod($value.'/mode', 0777);
+    }
+} elseif ($mode == 'merge') {
     if (!file_exists($id)) {
         mkdir($id);
         chmod($id, 0777);
-        $list = $_POST['entities'];
-        $entities = explode(';', $list);
-        $count = count($entities);
         $rating = 0;
         $modeArr = [];
-        foreach ($entities as $key=>$value) {
+        $concat = '';
+        foreach ($sequence as $key=>$value) {
             if (strpos($value, ':') !== false) {
                 $entPart = explode(':', $value);
                 $entID = $entPart[0];
                 $entFiles = $entPart[1];
                 $entFileList = explode(',', $entFiles);
+                if (in_array('mode', $entFileList) && in_array('rating', $entFileList)) {
+                    unset($entFileList[array_search('mode', $entFileList)]);
+                    unset($entFileList[array_search('rating', $entFileList)]);
+                }
                 foreach ($entFileList as $iter=>$file) {
                     chmod($entID.'/'.$file, 0777);
                     if (file_exists($id.'/'.$file)) {
@@ -31,6 +45,22 @@ if ($mode == 'merge') {
                 }
             } else {
                 $entID = $value;
+                $entFiles = str_replace($dir.'/'.$entID.'/','',(glob($dir.'/'.$entID.'/*')));
+                if (in_array('mode', $entFiles) && in_array('rating', $entFiles)) {
+                    unset($entFiles[array_search('mode', $entFiles)]);
+                    unset($entFiles[array_search('rating', $entFiles)]);
+                }
+                foreach ($entFiles as $iter=>$file) {
+                    chmod($entID.'/'.$file, 0777);
+                    if (file_exists($id.'/'.$file)) {
+                        $finFile = $concat.$file;
+                        rename($entID.'/'.$file, $id.'/'.$finFile);
+                        chmod($id.'/'.$finFile, 0777);
+                    } else {
+                        rename($entID.'/'.$file, $id.'/'.$file);
+                        chmod($id.'/'.$file, 0777);
+                    }
+                }
             }
             $entRating = file_get_contents($entID.'/rating');
             $entMode = file_get_contents($entID.'/mode');
@@ -55,14 +85,14 @@ if ($mode == 'merge') {
         chmod($id.'/mode', 0777);
     }
 } elseif ($mode == 'divide') {
-    $id = $_POST['entity'];
-    $concat = '#';
     $rating = file_get_contents($id.'/rating');
     $itmode = file_get_contents($id.'/mode');
-    $list = $_POST['entities'];
-    $entities = explode(';', $list);
-    $count = count($entities);
-    foreach ($entities as $key=>$value) {
+    $concat = '';
+    $revConcat = '';
+    for ($i = 0; $i < $last; $i++) {
+        $revConcat .= '#';
+    }
+    foreach ($sequence as $key=>$value) {
         if (strpos($value, ':') !== false) {
             $entPart = explode(':', $value);
             $entID = $entPart[0];
@@ -70,38 +100,53 @@ if ($mode == 'merge') {
             $entMode = $itmode;
             $entFiles = $entPart[1];
             $entFileList = explode(',', $entFiles);
+            if (in_array('mode', $entFileList) && in_array('rating', $entFileList)) {
+                unset($entFileList[array_search('mode', $entFileList)]);
+                unset($entFileList[array_search('rating', $entFileList)]);
+            }
             if (!file_exists($entID)) {
                 mkdir($entID);
                 chmod($entID, 0777);
+                foreach ($entFileList as $iter=>$file) {
+                    chmod($id.'/'.$file, 0777);
+                    copy($id.'/'.$file, $entID.'/'.$file);
+                    chmod($entID.'/'.$file, 0777);
+                }
                 file_put_contents($entID.'/rating', $entRating);
                 chmod($entID.'/rating', 0777);
                 file_put_contents($entID.'/mode', $entMode);
                 chmod($entID.'/mode', 0777);
-                foreach ($entFileList as $iter=>$file) {
-                    chmod($id.'/'.$file, 0777);
-                    if (strpos($file, $concat) !== false) {
-                        $finFile = str_replace($concat, '', $file);
-                        copy($id.'/'.$file, $entID.'/'.$finFile);
-                        chmod($entID.'/'.$finFile, 0777);
-                    } else {
-                        copy($id.'/'.$file, $entID.'/'.$file);
-                        chmod($entID.'/'.$file, 0777);
-                    }
-                }
             }
         } else {
             $entID = $value;
             $entRating = round(($rating / $count), 0);
             $entMode = $itmode;
+            if ($revConcat == $concat) {
+                $entFiles = str_replace($dir.'/'.$id.'/','',(glob($dir.'/'.$id.'/'.$concat.'*')));
+            } else {
+                $entFiles = str_replace($dir.'/'.$id.'/'.$revConcat,'',(glob($dir.'/'.$id.'/'.$concat.'*')));
+            }
+            if (in_array('mode', $entFiles) && in_array('rating', $entFiles)) {
+                unset($entFiles[array_search('mode', $entFiles)]);
+                unset($entFiles[array_search('rating', $entFiles)]);
+            }
             if (!file_exists($entID)) {
                 mkdir($entID);
                 chmod($entID, 0777);
+                foreach ($entFiles as $iter=>$file) {
+                    $fullFile = str_replace('#', '', $file);
+                    chmod($id.'/'.$file, 0777);
+                    copy($id.'/'.$file, $entID.'/'.$fullFile);
+                    chmod($entID.'/'.$fullFile, 0777);
+                }
                 file_put_contents($entID.'/rating', $entRating);
                 chmod($entID.'/rating', 0777);
                 file_put_contents($entID.'/mode', $entMode);
                 chmod($entID.'/mode', 0777);
             }
         }
+        $concat .= '#';
+        $revConcat = ltrim($revConcat, '#');
     }
     chmod($id, 0777);
     exec('rm -rf '.$id);
