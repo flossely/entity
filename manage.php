@@ -28,7 +28,7 @@ if ($mode == 'init') {
     if (!file_exists($id)) {
         mkdir($id);
         chmod($id, 0777);
-        $finRating = 1;
+        $finRating = 0;
         $modeArr = [];
         $concat = '';
         foreach ($sequence as $key=>$value) {
