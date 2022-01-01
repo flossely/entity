@@ -42,15 +42,10 @@ if ($mode == 'init') {
                     unset($entFileList[array_search('rating', $entFileList)]);
                 }
                 foreach ($entFileList as $iter=>$file) {
+                    $fullFile = $concat.$file;
                     chmod($entID.'/'.$file, 0777);
-                    if (file_exists($id.'/'.$file)) {
-                        $finFile = $concat.$file;
-                        rename($entID.'/'.$file, $id.'/'.$finFile);
-                        chmod($id.'/'.$finFile, 0777);
-                    } else {
-                        rename($entID.'/'.$file, $id.'/'.$file);
-                        chmod($id.'/'.$file, 0777);
-                    }
+                    rename($entID.'/'.$file, $id.'/'.$fullFile);
+                    chmod($id.'/'.$fullFile, 0777);
                 }
             } else {
                 $entID = $value;
