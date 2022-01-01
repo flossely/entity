@@ -28,7 +28,7 @@ if ($mode == 'init') {
     if (!file_exists($id)) {
         mkdir($id);
         chmod($id, 0777);
-        $rating = 0;
+        $finRating = 1;
         $modeArr = [];
         $concat = '';
         foreach ($sequence as $key=>$value) {
@@ -63,7 +63,8 @@ if ($mode == 'init') {
             }
             $entRating = file_get_contents($entID.'/rating');
             $entMode = file_get_contents($entID.'/mode');
-            $rating += $entRating;
+            $addRating = ($entRating > 0) ? $entRating : 1;
+            $finRating += $addRating;
             $modeArr[] = $entMode;
             $concat .= '#';
             chmod($entID, 0777);
@@ -72,15 +73,15 @@ if ($mode == 'init') {
         $slice = array_slice($modeArr, 0, $count);
         $result = round((array_sum($slice) / sizeof($slice)), 0);
         if ($result > 0) {
-            $finRes = 1;
+            $finMode = 1;
         } elseif ($result < 0) {
-            $finRes = -1;
+            $finMode = -1;
         } else {
-            $finRes = 0;
+            $finMode = 0;
         }
-        file_put_contents($id.'/rating', $rating);
+        file_put_contents($id.'/rating', $finRating);
         chmod($id.'/rating', 0777);
-        file_put_contents($id.'/mode', $finRes);
+        file_put_contents($id.'/mode', $finMode);
         chmod($id.'/mode', 0777);
     }
 } elseif ($mode == 'divide') {
