@@ -7,13 +7,22 @@ $sequence = explode(';', $data);
 $count = count($sequence);
 $last = $count - 1;
 if ($mode == 'init') {
-    foreach ($data as $key=>$value) {
-        mkdir($value);
-        chmod($value, 0777);
-        file_put_contents($value.'/rating', 0);
-        chmod($value.'/rating', 0777);
-        file_put_contents($value.'/mode', 0);
-        chmod($value.'/mode', 0777);
+    foreach ($sequence as $key=>$value) {
+        if (!file_exists($value)) {
+            mkdir($value);
+            chmod($value, 0777);
+            file_put_contents($value.'/rating', 0);
+            chmod($value.'/rating', 0777);
+            file_put_contents($value.'/mode', 0);
+            chmod($value.'/mode', 0777);
+        }
+    }
+} elseif ($mode == 'kill') {
+    foreach ($sequence as $key=>$value) {
+        if ($value != '' && file_exists($value)) {
+            chmod($value, 0777);
+            exec('rm -rf '.$value);
+        }
     }
 } elseif ($mode == 'merge') {
     if (!file_exists($id)) {
@@ -51,15 +60,10 @@ if ($mode == 'init') {
                     unset($entFiles[array_search('rating', $entFiles)]);
                 }
                 foreach ($entFiles as $iter=>$file) {
+                    $fullFile = $concat.$file;
                     chmod($entID.'/'.$file, 0777);
-                    if (file_exists($id.'/'.$file)) {
-                        $finFile = $concat.$file;
-                        rename($entID.'/'.$file, $id.'/'.$finFile);
-                        chmod($id.'/'.$finFile, 0777);
-                    } else {
-                        rename($entID.'/'.$file, $id.'/'.$file);
-                        chmod($id.'/'.$file, 0777);
-                    }
+                    rename($entID.'/'.$file, $id.'/'.$fullFile);
+                    chmod($id.'/'.$fullFile, 0777);
                 }
             }
             $entRating = file_get_contents($entID.'/rating');
