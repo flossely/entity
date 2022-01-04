@@ -56,6 +56,39 @@ if ($mode == 'init') {
             exec('rm -rf '.$value);
         }
     }
+} elseif ($mode == 'modify') {
+    foreach ($sequence as $key=>$value) {
+        if (file_exists($value)) {
+            if (strpos($value, ':') !== false) {
+                $valSep = explode(':', $value);
+                $valName = $valSep[0];
+                $valDef = $valSep[1];
+                if (is_numeric($valDef)) {
+                    file_put_contents($valName.'/rating', $valDef);
+                    chmod($valName.'/rating', 0777);
+                } elseif ($valDef == 'left') {
+                    file_put_contents($valName.'/mode', -1);
+                    chmod($valName.'/mode', 0777);
+                } elseif ($valDef == 'center') {
+                    file_put_contents($valName.'/mode', 0);
+                    chmod($valName.'/mode', 0777);
+                } elseif ($valDef == 'right') {
+                    file_put_contents($valName.'/mode', 1);
+                    chmod($valName.'/mode', 0777);
+                } else {
+                    file_put_contents($valName.'/rating', 0);
+                    chmod($valName.'/rating', 0777);
+                    file_put_contents($valName.'/mode', 0);
+                    chmod($valName.'/mode', 0777);
+                }
+            } else {
+                file_put_contents($valName.'/rating', 0);
+                chmod($valName.'/rating', 0777);
+                file_put_contents($valName.'/mode', 0);
+                chmod($valName.'/mode', 0777);
+            }
+        }
+    }
 } elseif ($mode == 'merge') {
     if (!file_exists($id)) {
         mkdir($id);
