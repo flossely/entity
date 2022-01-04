@@ -1,7 +1,11 @@
 <?php
 $id = $_REQUEST['id'];
 $key = $_REQUEST['key'];
-$content = file_get_contents($id.'/rating');
+if (file_exists($id.'/rating')) {
+    $content = file_get_contents($id.'/rating');
+} else {
+    $content = 0;
+}
 if ($key == 'up') {
     $content += 1;
 } elseif ($key == 'down') {

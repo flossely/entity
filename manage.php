@@ -9,12 +9,44 @@ $last = $count - 1;
 if ($mode == 'init') {
     foreach ($sequence as $key=>$value) {
         if (!file_exists($value)) {
-            mkdir($value);
-            chmod($value, 0777);
-            file_put_contents($value.'/rating', 0);
-            chmod($value.'/rating', 0777);
-            file_put_contents($value.'/mode', 0);
-            chmod($value.'/mode', 0777);
+            if (strpos($value, ':') !== false) {
+                $valSep = explode(':', $value);
+                $valName = $valSep[0];
+                $valType = $valSep[1];
+                if ($valType == 'profile') {
+                    mkdir($valName);
+                    chmod($valName, 0777);
+                    file_put_contents($valName.'/rating', 0);
+                    chmod($valName.'/rating', 0777);
+                    file_put_contents($valName.'/mode', 0);
+                    chmod($valName.'/mode', 0777);
+                } elseif ($valType == 'system') {
+                    mkdir($valName);
+                    chmod($valName, 0777);
+                    if (file_exists('get.php')) {
+                        copy('get.php', $valName.'/get.php');
+                        chmod($valName.'/get.php', 0777);
+                    }
+                } elseif ($valType == 'both') {
+                    mkdir($valName);
+                    chmod($valName, 0777);
+                    file_put_contents($valName.'/rating', 0);
+                    chmod($valName.'/rating', 0777);
+                    file_put_contents($valName.'/mode', 0);
+                    chmod($valName.'/mode', 0777);
+                    if (file_exists('get.php')) {
+                        copy('get.php', $valName.'/get.php');
+                        chmod($valName.'/get.php', 0777);
+                    }
+                }
+            } else {
+                mkdir($value);
+                chmod($value, 0777);
+                file_put_contents($value.'/rating', 0);
+                chmod($value.'/rating', 0777);
+                file_put_contents($value.'/mode', 0);
+                chmod($value.'/mode', 0777);
+            }
         }
     }
 } elseif ($mode == 'kill') {
