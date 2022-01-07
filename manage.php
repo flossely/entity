@@ -1,4 +1,58 @@
 <?php
+function recurseCopy(
+    string $sourceDirectory,
+    string $destinationDirectory,
+    string $childFolder = ''
+): void {
+    $directory = opendir($sourceDirectory);
+
+    if (is_dir($destinationDirectory) === false) {
+        mkdir($destinationDirectory);
+        chmod($destinationDirectory, 0777);
+    }
+
+    if ($childFolder !== '') {
+        if (is_dir("$destinationDirectory/$childFolder") === false) {
+            mkdir("$destinationDirectory/$childFolder");
+            chmod("$destinationDirectory/$childFolder", 0777);
+        }
+
+        while (($file = readdir($directory)) !== false) {
+            if ($file === '.' || $file === '..') {
+                continue;
+            }
+
+            if (is_dir("$sourceDirectory/$file") === true) {
+                recurseCopy("$sourceDirectory/$file", "$destinationDirectory/$childFolder/$file");
+            } else {
+                copy("$sourceDirectory/$file", "$destinationDirectory/$childFolder/$file");
+                chmod("$destinationDirectory/$childFolder/$file", 0777);
+            }
+        }
+
+        closedir($directory);
+
+        return;
+    }
+
+    while (($file = readdir($directory)) !== false) {
+        if ($file === '.' || $file === '..') {
+            continue;
+        }
+
+        if (is_dir("$sourceDirectory/$file") === true) {
+            recurseCopy("$sourceDirectory/$file", "$destinationDirectory/$file");
+            chmod("$destinationDirectory/$file", 0777);
+        }
+        else {
+            copy("$sourceDirectory/$file", "$destinationDirectory/$file");
+            chmod("$destinationDirectory/$file", 0777);
+        }
+    }
+
+    closedir($directory);
+}
+
 $dir = '.';
 $mode = $_POST['mode'];
 $id = $_POST['id'];
@@ -108,9 +162,15 @@ if ($mode == 'init') {
                 }
                 foreach ($entFileList as $iter=>$file) {
                     $fullFile = $concat.$file;
-                    chmod($entID.'/'.$file, 0777);
-                    rename($entID.'/'.$file, $id.'/'.$fullFile);
-                    chmod($id.'/'.$fullFile, 0777);
+                    if (is_dir($entID.'/'.$file)) {
+                        chmod($entID.'/'.$file, 0777);
+                        recurseCopy($entID.'/'.$file, $id.'/'.$fullFile);
+                        chmod($id.'/'.$fullFile, 0777);
+                    } else {
+                        chmod($entID.'/'.$file, 0777);
+                        rename($entID.'/'.$file, $id.'/'.$fullFile);
+                        chmod($id.'/'.$fullFile, 0777);
+                    }
                 }
             } else {
                 $entID = $value;
@@ -121,9 +181,15 @@ if ($mode == 'init') {
                 }
                 foreach ($entFiles as $iter=>$file) {
                     $fullFile = $concat.$file;
-                    chmod($entID.'/'.$file, 0777);
-                    rename($entID.'/'.$file, $id.'/'.$fullFile);
-                    chmod($id.'/'.$fullFile, 0777);
+                    if (is_dir($entID.'/'.$file)) {
+                        chmod($entID.'/'.$file, 0777);
+                        recurseCopy($entID.'/'.$file, $id.'/'.$fullFile);
+                        chmod($id.'/'.$fullFile, 0777);
+                    } else {
+                        chmod($entID.'/'.$file, 0777);
+                        rename($entID.'/'.$file, $id.'/'.$fullFile);
+                        chmod($id.'/'.$fullFile, 0777);
+                    }
                 }
             }
             $entRating = file_get_contents($entID.'/rating');
@@ -173,9 +239,15 @@ if ($mode == 'init') {
                 mkdir($entID);
                 chmod($entID, 0777);
                 foreach ($entFileList as $iter=>$file) {
-                    chmod($id.'/'.$file, 0777);
-                    copy($id.'/'.$file, $entID.'/'.$file);
-                    chmod($entID.'/'.$file, 0777);
+                    if (is_dir($id.'/'.$file)) {
+                        chmod($id.'/'.$file, 0777);
+                        recurseCopy($id.'/'.$file, $entID.'/'.$file);
+                        chmod($entID.'/'.$file, 0777);
+                    } else {
+                        chmod($id.'/'.$file, 0777);
+                        copy($id.'/'.$file, $entID.'/'.$file);
+                        chmod($entID.'/'.$file, 0777);
+                    }
                 }
                 file_put_contents($entID.'/rating', $entRating);
                 chmod($entID.'/rating', 0777);
@@ -186,8 +258,9 @@ if ($mode == 'init') {
             $entID = $value;
             $entRating = round(($rating / $count), 0);
             $entMode = $itmode;
-            if ($revConcat == $concat) {
-                $entFiles = str_replace($dir.'/'.$id.'/','',(glob($dir.'/'.$id.'/'.$concat.'*')));
+            if ($concat == '') {
+                $entFiles = str_replace($dir.'/'.$id.'/','',(glob($dir.'/'.$id.'/*')));
+            
             } else {
                 $entFiles = str_replace($dir.'/'.$id.'/'.$revConcat,'',(glob($dir.'/'.$id.'/'.$concat.'*')));
             }
@@ -199,10 +272,20 @@ if ($mode == 'init') {
                 mkdir($entID);
                 chmod($entID, 0777);
                 foreach ($entFiles as $iter=>$file) {
-                    $fullFile = str_replace('#', '', $file);
-                    chmod($id.'/'.$file, 0777);
-                    copy($id.'/'.$file, $entID.'/'.$fullFile);
-                    chmod($entID.'/'.$fullFile, 0777);
+                    if (strpos($file, '#') !== false) {
+                        $fullFile = str_replace('#', '', $file);
+                    } else {
+                        $fullFile = $file;
+                    }
+                    if (is_dir($id.'/'.$file)) {
+                        chmod($id.'/'.$file, 0777);
+                        recurseCopy($id.'/'.$file, $entID.'/'.$fullFile);
+                        chmod($entID.'/'.$fullFile, 0777);
+                    } else {
+                        chmod($id.'/'.$file, 0777);
+                        copy($id.'/'.$file, $entID.'/'.$fullFile);
+                        chmod($entID.'/'.$fullFile, 0777);
+                    }
                 }
                 file_put_contents($entID.'/rating', $entRating);
                 chmod($entID.'/rating', 0777);
