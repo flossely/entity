@@ -127,6 +127,9 @@ if ($mode == 'init') {
                 } elseif ($valDef == 'right') {
                     file_put_contents($valName.'/mode', 1);
                     chmod($valName.'/mode', 0777);
+                } elseif ($valDef == 'system') {
+                    copy('get.php', $valName.'/get.php');
+                    chmod($valName.'/get.php', 0777);
                 } else {
                     file_put_contents($valName.'/rating', 0);
                     chmod($valName.'/rating', 0777);
