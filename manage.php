@@ -146,6 +146,42 @@ if ($mode == 'init') {
             }
         }
     }
+} elseif ($mode == 'join') {
+    if (file_exists($id)) {
+        foreach ($sequence as $key=>$value) {
+            $entID = $value;
+            if (file_exists($entID)) {
+                if (is_dir($entID)) {
+                    chmod($entID, 0777);
+                    recurseCopy($entID, $id.'/'.$entID);
+                    chmod($id.'/'.$entID, 0777);
+                    exec('rm -rf '.$entID);
+                } else {
+                    chmod($entID, 0777);
+                    rename($entID, $id.'/'.$entID);
+                    chmod($id.'/'.$entID, 0777);
+                }
+            }
+        }
+    }
+} elseif ($mode == 'leave') {
+    if (file_exists($id)) {
+        foreach ($sequence as $key=>$value) {
+            $entID = $value;
+            if (file_exists($id.'/'.$entID)) {
+                if (is_dir($id.'/'.$entID)) {
+                    chmod($id.'/'.$entID, 0777);
+                    recurseCopy($id.'/'.$entID, $dir.'/'.$entID);
+                    chmod($dir.'/'.$entID, 0777);
+                    exec('rm -rf '.$id.'/'.$entID);
+                } else {
+                    chmod($id.'/'.$entID, 0777);
+                    rename($id.'/'.$entID, $dir.'/'.$entID);
+                    chmod($dir.'/'.$entID, 0777);
+                }
+            }
+        }
+    }
 } elseif ($mode == 'merge') {
     if (!file_exists($id)) {
         mkdir($id);
