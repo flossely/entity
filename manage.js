@@ -32,7 +32,7 @@ function launch(cmd, obj) {
     } else if (cmd == 'show') {
         window.location.href = obj + '/favicon.png';
     } else if (cmd == 'footu') {
-        window.location.href = obj + '/footu.png';
+        window.location.href = 'stats.php?q=' + obj + '&v=1&a=u.png';
     } else if (cmd == 'footd') {
         window.location.href = obj + '/footd.png';
     } else if (cmd == 'footl') {
