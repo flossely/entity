@@ -40,4 +40,5 @@ function launch(cmd, obj) {
     } else if (cmd == 'footr') {
         window.location.href = obj + '/footr.png';
     }
+    return false;
 }
