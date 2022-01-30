@@ -337,4 +337,17 @@ if ($mode == 'init') {
     }
     chmod($id, 0777);
     exec('rm -rf '.$id);
+} elseif ($mode == 'reset') {
+    $profiles = str_replace($dir.'/','',(glob($dir.'/*', GLOB_ONLYDIR)));
+    foreach ($profiles as $key=>$value) {
+        if (!file_exists($value.'/rating') && !file_exists($value.'/mode')) {
+            unset($profiles[array_search($value, $profiles)]);
+        }
+    }
+    foreach ($profiles as $key=>$value) {
+        file_put_contents($value.'/rating', 0);
+        chmod($value.'/rating', 0777);
+        file_put_contents($value.'/mode', 0);
+        chmod($value.'/mode', 0777);
+    }
 }
