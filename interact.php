@@ -23,7 +23,19 @@ $subMode = file_get_contents($sub.'/mode');
 $objRating = file_get_contents($obj.'/rating');
 $objMode = file_get_contents($obj.'/mode');
 
-if ($act == 'punch') {
+if ($act == 'run') {
+    header("Location: '$obj'");
+} elseif ($act == 'show') {
+    header("Location: '$obj/favicon.png'");
+} elseif ($act == 'footu') {
+    header("Location: '$obj/footu.png'");
+} elseif ($act == 'footd') {
+    header("Location: '$obj/footd.png'");
+} elseif ($act == 'footl') {
+    header("Location: '$obj/footl.png'");
+} elseif ($act == 'footr') {
+    header("Location: '$obj/footr.png'");
+} elseif ($act == 'punch') {
     $subForce = 1;
     $subAddForce = getForce($subForce, $subMode, $objMode, 2);
     $subRatingEffect = round($subAddForce, 0);
