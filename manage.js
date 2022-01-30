@@ -32,13 +32,13 @@ function launch(cmd, obj) {
     } else if (cmd == 'show') {
         window.location.href = obj + '/favicon.png';
     } else if (cmd == 'footu') {
-        window.location.href = 'stats.php?q=' + obj + '&v=1&a=u.png';
+        window.location.href = 'stats.php?q=' + obj + '&alpha=u&view=1';
     } else if (cmd == 'footd') {
-        window.location.href = obj + '/footd.png';
+        window.location.href = 'stats.php?q=' + obj + '&alpha=d&view=1';
     } else if (cmd == 'footl') {
-        window.location.href = obj + '/footl.png';
+        window.location.href = 'stats.php?q=' + obj + '&alpha=l&view=1';
     } else if (cmd == 'footr') {
-        window.location.href = obj + '/footr.png';
+        window.location.href = 'stats.php?q=' + obj + '&alpha=r&view=1';
     }
     return false;
 }
