@@ -1,4 +1,5 @@
 <?php
+
 function recurseCopy(
     string $sourceDirectory,
     string $destinationDirectory,
@@ -51,6 +52,18 @@ function recurseCopy(
     }
 
     closedir($directory);
+}
+
+function getForce($sf, $sm, $om, $fk) {
+    if ($sm > $om) {
+        $k = $fk + ($sm - $om);
+        return $sf * $k;
+    } elseif ($sm < $om) {
+        $k = $fk + ($om - $sm);
+        return $sf / $k;
+    } else {
+        return $sf;
+    }
 }
 
 $dir = '.';
@@ -349,5 +362,50 @@ if ($mode == 'init') {
         chmod($value.'/rating', 0777);
         file_put_contents($value.'/mode', 0);
         chmod($value.'/mode', 0777);
+    }
+} elseif ($mode == 'hit') {
+    $subRating = file_get_contents($id.'/rating');
+    $subMode = file_get_contents($id.'/mode');
+    foreach ($sequence as $key=>$value) {
+        if (strpos($value, ':') !== false) {
+            $valSep = explode(':', $value);
+            $valName = $valSep[0];
+            $valDef = $valSep[1];
+            $objRating = file_get_contents($valName.'/rating');
+            $objMode = file_get_contents($valName.'/mode');
+            if (is_numeric($valDef)) {
+                $subForce = $valDef;
+                $subAddForce = getForce($subForce, $subMode, $objMode, 2);
+                $subRatingEffect = round($subAddForce, 0);
+                $objRating = $objRating - $subRatingEffect;
+                $subRating = $subRating + $subRatingEffect;
+            } else {
+                $subForce = 2;
+                $subAddForce = getForce($subForce, $subMode, $objMode, 2);
+                $subRatingEffect = round($subAddForce, 0);
+                $objRating = $objRating - $subRatingEffect;
+                $subRating = $subRating + $subRatingEffect;
+            }
+            file_put_contents($valName.'/rating', $objRating);
+            chmod($valName.'/rating', 0777);
+            file_put_contents($valName.'/mode', $objMode);
+            chmod($valName.'/mode', 0777);
+        } else {
+            $objRating = file_get_contents($value.'/rating');
+            $objMode = file_get_contents($value.'/mode');
+            $subForce = 2;
+            $subAddForce = getForce($subForce, $subMode, $objMode, 2);
+            $subRatingEffect = round($subAddForce, 0);
+            $objRating = $objRating - $subRatingEffect;
+            $subRating = $subRating + $subRatingEffect;
+            file_put_contents($value.'/rating', $objRating);
+            chmod($value.'/rating', 0777);
+            file_put_contents($value.'/mode', $objMode);
+            chmod($value.'/mode', 0777);
+        }
+        file_put_contents($id.'/rating', $subRating);
+        chmod($id.'/rating', 0777);
+        file_put_contents($id.'/mode', $subMode);
+        chmod($id.'/mode', 0777);
     }
 }
