@@ -25,3 +25,20 @@ function vote(id,key) {
     xmlhttp.open("GET","vote.php?id="+id+"&key="+key,false);
     xmlhttp.send();
 }
+function batch(name, content, bulk)
+{
+    if (window.XMLHttpRequest) {
+        xmlhttp=new XMLHttpRequest();
+    } else {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function() {
+        if (this.readyState==4 && this.status==200) {
+            if (bulk !== true) {
+                document.location.reload();
+            }
+        }
+    }
+    xmlhttp.open("GET","batch.php?name="+name+"&content="+content,false);
+    xmlhttp.send();
+}
