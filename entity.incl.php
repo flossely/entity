@@ -1,0 +1,1 @@
+<script src="manage.js?rev=<?=time();?>"></script>
