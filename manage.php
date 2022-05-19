@@ -358,10 +358,12 @@ if ($mode == 'init') {
         }
     }
     foreach ($profiles as $key=>$value) {
-        file_put_contents($value.'/rating', 0);
+        file_put_contents($value.'/rating', rand(0,1000));
         chmod($value.'/rating', 0777);
-        file_put_contents($value.'/mode', 0);
+        file_put_contents($value.'/mode', rand(-1,1));
         chmod($value.'/mode', 0777);
+        file_put_contents($value.'/coord', rand(-180,180).';'.rand(-90,90).';'.rand(-25,255));
+        chmod($value.'/coord', 0777);
     }
 } elseif ($mode == 'hit') {
     $subRating = file_get_contents($id.'/rating');
