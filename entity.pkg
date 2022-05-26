@@ -1,1 +1,1 @@
-flossely|[2]|LIB|[2]|4.4|[2]|main|[2]|October 2021|[2]|A set of PHP scripts and libraries to manage entities inside one web server instance.|[1]|vote.php;manage.php;actions;manage.js;batch.php;entity.mod;entity.ctl;entity.incl.php;
+flossely|[2]|LIB|[2]|4.4|[2]|main|[2]|October 2021|[2]|A set of PHP scripts and libraries to manage entities inside one web server instance.|[1]|vote.php;manage.php;actions;manage.js;batch.php;entity.mod;entity.ctl;entity.incl.php;getdir.php;
