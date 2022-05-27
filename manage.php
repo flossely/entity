@@ -358,11 +358,11 @@ if ($mode == 'init') {
         }
     }
     foreach ($profiles as $key=>$value) {
-        file_put_contents($value.'/rating', rand(0,1000));
+        file_put_contents($value.'/rating', 0);
         chmod($value.'/rating', 0777);
-        file_put_contents($value.'/mode', rand(-1,1));
+        file_put_contents($value.'/mode', 0);
         chmod($value.'/mode', 0777);
-        file_put_contents($value.'/coord', rand(-20037077,20037077).';'.rand(-10018538,10018538).';'.rand(-6371000,7000));
+        file_put_contents($value.'/coord', '0;0;0');
         chmod($value.'/coord', 0777);
     }
 } elseif ($mode == 'hit') {
