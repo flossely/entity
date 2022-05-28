@@ -27,7 +27,7 @@ if ($key == 'i') {
         chmod($repo, 0777);
         exec('chmod -R 777 .');
         // AFTER INSTALLATION
-        file_put_contents($repo.'/coord', '88;-12;56');
+        file_put_contents($repo.'/coord', '0;0;0');
         chmod($repo.'/coord', 0777);
         file_put_contents($repo.'/rating', 0);
         chmod($repo.'/rating', 0777);
