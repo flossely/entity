@@ -27,15 +27,10 @@ if ($key == 'i') {
         chmod($repo, 0777);
         exec('chmod -R 777 .');
         // AFTER INSTALLATION
-        if (file_exists($repo.'/coord')) {
-            chmod($repo.'/coord', 0777);
-        }
-        if (file_exists($repo.'/rating')) {
-            chmod($repo.'/rating', 0777);
-        }
-        if (file_exists($repo.'/mode')) {
-            chmod($repo.'/mode', 0777);
-        }
+        file_put_contents($repo.'/coord', '88;-12;56');
+        chmod($repo.'/coord', 0777);
+        file_put_contents($repo.'/rating', 0);
+        chmod($repo.'/rating', 0777);
     }
     
 // IN CASE YOU WANT TO REPLACE PACKAGE WITH NEW
