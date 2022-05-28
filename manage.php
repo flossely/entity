@@ -358,12 +358,21 @@ if ($mode == 'init') {
         }
     }
     foreach ($profiles as $key=>$value) {
-        file_put_contents($value.'/rating', 0);
-        chmod($value.'/rating', 0777);
-        file_put_contents($value.'/mode', 0);
-        chmod($value.'/mode', 0777);
-        file_put_contents($value.'/coord', '0;0;0');
-        chmod($value.'/coord', 0777);
+        if ($id == 'rating') {
+            file_put_contents($value.'/rating', 0);
+            chmod($value.'/rating', 0777);
+        } elseif ($id == 'mode') {
+            file_put_contents($value.'/mode', 0);
+            chmod($value.'/mode', 0777);
+        } elseif ($id == 'coord') {
+            file_put_contents($value.'/coord', '0;0;0');
+            chmod($value.'/coord', 0777);
+        } else {
+            file_put_contents($value.'/rating', 0);
+            chmod($value.'/rating', 0777);
+            file_put_contents($value.'/coord', '0;0;0');
+            chmod($value.'/coord', 0777);
+        }
     }
 } elseif ($mode == 'hit') {
     $subRating = file_get_contents($id.'/rating');
