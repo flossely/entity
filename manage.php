@@ -370,6 +370,8 @@ if ($mode == 'init') {
         } else {
             file_put_contents($value.'/rating', 0);
             chmod($value.'/rating', 0777);
+            file_put_contents($value.'/mode', 0);
+            chmod($value.'/mode', 0777);
             file_put_contents($value.'/coord', '0;0;0');
             chmod($value.'/coord', 0777);
         }
