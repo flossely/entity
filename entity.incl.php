@@ -1,1 +1,1 @@
-<script src="manage.js?rev=<?=time();?>"></script>
+<script src="entity.js?rev=<?=time();?>"></script>
