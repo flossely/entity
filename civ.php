@@ -112,7 +112,7 @@ define('END_III', 1500);
 define('ERA_IV', $dictus[$lingua]['renaissance_era']);
 define('START_IV', 1500);
 define('END_IV', 1700);
-define('ERA_V', $dictus[$lingua]['industry_era']);
+define('ERA_V', $dictus[$lingua]['industrial_era']);
 define('START_V', 1700);
 define('END_V', 1900);
 define('ERA_VI', $dictus[$lingua]['modern_era']);
@@ -166,76 +166,133 @@ $civ =
         'coord' => '12.49750000;41.90500000;56',
         'var' =>
         [
-            'II' =>
+            'ii' =>
             [
                 'era' => ERA_II,
                 'started' => START_II,
                 'ended' => END_II,
-                'name' => 'Roman Empire',
-                'leader' => 'Julius Caesar',
+                'name' =>
+                [
+                    'en' => 'Roman Empire',
+                    'la' => 'Imperium Romanum',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Julius Caesar',
+                    'la' => 'Julius Caesar',
+                ],
                 'economy' => FREE_MARKET,
                 'government' => AUTOCRACY,
             ],
-            'III' =>
+            'iii' =>
             [
                 'era' => ERA_III,
                 'started' => START_III,
                 'ended' => END_III,
-                'name' => 'Holy Roman Empire',
-                'leader' => 'Charlemagne',
+                'name' =>
+                [
+                    'en' => 'Holy Roman Empire',
+                    'la' => 'Sacrum Imperium Romanum',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Charlemagne',
+                    'la' => 'Carolus Magnus',
+                ],
                 'title' => KING,
                 'economy' => FREE_MARKET,
                 'government' => MONARCHY,
             ],
-            'IV' =>
+            'iv' =>
             [
                 'era' => ERA_IV,
                 'started' => START_IV,
                 'ended' => END_IV,
-                'name' => 'Holy Roman Empire',
-                'leader' => 'Charles V',
+                'name' =>
+                [
+                    'en' => 'Holy Roman Empire',
+                    'la' => 'Sacrum Imperium Romanum',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Charles V',
+                    'la' => 'Carolus V',
+                ],
+                'leader' => '',
                 'title' => KING,
                 'economy' => FREE_MARKET,
                 'government' => MONARCHY,
             ],
-            'V' =>
+            'v' =>
             [
                 'era' => ERA_V,
                 'started' => START_V,
                 'ended' => END_V,
-                'name' => 'French Republic',
-                'leader' => 'Napoleon Bonaparte',
+                'name' =>
+                [
+                    'en' => 'French Republic',
+                    'la' => 'Gallico Republica',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Napoleon Bonaparte',
+                    'la' => 'Neapolio Bonaparte I',
+                ],
                 'title' => EMPEROR,
                 'economy' => FREE_MARKET,
                 'government' => MONARCHY,
             ],
-            'VI' =>
+            'vi' =>
             [
                 'era' => ERA_VI,
                 'started' => START_VI,
                 'ended' => END_VI,
-                'name' => 'French Republic',
-                'leader' => 'Charles de Gaulle',
+                'name' =>
+                [
+                    'en' => 'French Republic',
+                    'la' => 'Gallico Republica',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Charles de Gaulle',
+                    'la' => 'Carolus de Gaulle',
+                ],
                 'economy' => FREE_MARKET,
                 'government' => FASCISM,
             ],
-            'VII' =>
+            'vii' =>
             [
                 'era' => ERA_VII,
                 'started' => START_VII,
                 'ended' => END_VII,
-                'name' => 'French Republic',
-                'leader' => 'François Mitterrand',
+                'name' =>
+                [
+                    'en' => 'French Republic',
+                    'la' => 'Gallico Republica',
+                ],
+                'leader' =>
+                [
+                    'en' => 'François Mitterrand',
+                    'la' => 'Franciscus Mitterrand',
+                ],
                 'economy' => FREE_MARKET,
                 'government' => COMMUNISM,
             ],
-            'VIII' =>
+            'viii' =>
             [
                 'era' => ERA_VIII,
                 'started' => START_VIII,
                 'ended' => END_VIII,
-                'name' => 'European Union',
-                'leader' => 'Ursula von der Leyen',
+                'name' =>
+                [
+                    'en' => 'European Union',
+                    'la' => 'Unio Europaea',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Ursula von der Leyen',
+                    'la' => 'Ursula de ille Leges',
+                ],
                 'title' => PRESIDENT,
                 'economy' => FREE_MARKET,
                 'government' => DEMOCRACY,
@@ -249,46 +306,78 @@ $civ =
         'coord' => '-77.01222222;38.91444444;48',
         'var' =>
         [
-            'V' =>
+            'v' =>
             [
                 'era' => ERA_V,
                 'started' => START_V,
                 'ended' => END_V,
-                'name' => 'Confederate States of America',
-                'leader' => 'George Washington',
+                'name' =>
+                [
+                    'en' => 'Confederate States of America',
+                    'la' => 'Confoederatio Americae',
+                ],
+                'leader' =>
+                [
+                    'en' => 'George Washington',
+                    'la' => 'Georgius Washingtonius',
+                ],
                 'title' => PRESIDENT,
                 'economy' => FREE_MARKET,
                 'government' => DEMOCRACY,
             ],
-            'VI' =>
+            'vi' =>
             [
                 'era' => ERA_VI,
                 'started' => START_VI,
                 'ended' => END_VI,
-                'name' => 'United States of America',
-                'leader' => 'Theodore Roosevelt',
+                'name' =>
+                [
+                    'en' => 'United States of America',
+                    'la' => 'Foederatae Americae',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Theodore Roosevelt',
+                    'la' => 'Theodorus Rooseveltius',
+                ],
                 'title' => PRESIDENT,
                 'economy' => FREE_MARKET,
                 'government' => DEMOCRACY,
             ],
-            'VII' =>
+            'vii' =>
             [
                 'era' => ERA_VII,
                 'started' => START_VII,
                 'ended' => END_VII,
-                'name' => 'United States of America',
-                'leader' => 'Harry Truman',
+                'name' =>
+                [
+                    'en' => 'United States of America',
+                    'la' => 'Foederatae Americae',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Harry Truman',
+                    'la' => 'Henricus Truman',
+                ],
                 'title' => PRESIDENT,
                 'economy' => FREE_MARKET,
                 'government' => DEMOCRACY,
             ],
-            'VIII' =>
+            'viii' =>
             [
                 'era' => ERA_VIII,
                 'started' => START_VIII,
                 'ended' => END_VIII,
-                'name' => 'United States of America',
-                'leader' => 'Donald Trump',
+                'name' =>
+                [
+                    'en' => 'United States of America',
+                    'la' => 'Foederatae Americae',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Donald Trump',
+                    'la' => 'Donaldus Trumphius',
+                ],
                 'title' => PRESIDENT,
                 'economy' => FREE_MARKET,
                 'government' => DEMOCRACY,
@@ -302,65 +391,113 @@ $civ =
         'coord' => '37.61861111;55.75916667;147',
         'var' =>
         [
-            'III' =>
+            'iii' =>
             [
                 'era' => ERA_III,
                 'started' => START_III,
                 'ended' => END_III,
-                'name' => 'Kievan Rus',
-                'leader' => 'Vladimir I',
+                'name' =>
+                [
+                    'en' => 'Kievan Rus',
+                    'la' => 'Magni Duces Kiovienses',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Vladimir I',
+                    'la' => 'Vladimirus I',
+                ],
                 'economy' => NATURAL_ECONOMY,
                 'government' => CHIEFDOM,
             ],
-            'IV' =>
+            'iv' =>
             [
                 'era' => ERA_IV,
                 'started' => START_IV,
                 'ended' => END_IV,
-                'name' => 'Grand Duchy of Moscow',
-                'leader' => 'Ivan IV the Terrible',
-                'title' => DUKE,
+                'name' =>
+                [
+                    'en' => 'Grand Duchy of Moscow',
+                    'la' => 'Magni Ducatus Moscuensis',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Ivan IV the Terrible',
+                    'la' => 'Ioannes IV',
+                ],
+                'title' => CAESAR,
                 'economy' => NATURAL_ECONOMY,
                 'government' => MONARCHY,
             ],
-            'V' =>
+            'v' =>
             [
                 'era' => ERA_V,
                 'started' => START_V,
                 'ended' => END_V,
-                'name' => 'Russian Empire',
-                'leader' => 'Peter I the Great',
+                'name' =>
+                [
+                    'en' => 'Russian Empire',
+                    'la' => 'Imperium Russicum',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Peter I the Great',
+                    'la' => 'Petrus I',
+                ],
                 'title' => CAESAR,
                 'economy' => FAIR_MARKET,
                 'government' => MONARCHY,
             ],
-            'VI' =>
+            'vi' =>
             [
                 'era' => ERA_VI,
                 'started' => START_VI,
                 'ended' => END_VI,
-                'name' => 'USSR',
-                'leader' => 'Vladimir Ilyich Lenin',
+                'name' =>
+                [
+                    'en' => 'Soviet Union',
+                    'la' => 'Unio Sovietica',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Vladimir Lenin',
+                    'la' => 'Vladimirus Ulyanov',
+                ],
                 'economy' => PLANNED_ECONOMY,
                 'government' => COMMUNISM,
             ],
-            'VII' =>
+            'vii' =>
             [
                 'era' => ERA_VII,
                 'started' => START_VII,
                 'ended' => END_VII,
-                'name' => 'USSR',
-                'leader' => 'Leonid Ilyich Brezhnev',
+                'name' =>
+                [
+                    'en' => 'Soviet Union',
+                    'la' => 'Unio Sovietica',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Leonid Brezhnev',
+                    'la' => 'Leonidas Breznev',
+                ],
                 'economy' => PLANNED_ECONOMY,
                 'government' => COMMUNISM,
             ],
-            'VIII' =>
+            'viii' =>
             [
                 'era' => ERA_VIII,
                 'started' => START_VIII,
                 'ended' => END_VIII,
-                'name' => 'Russian Federation',
-                'leader' => 'Vladimir Putin',
+                'name' =>
+                [
+                    'en' => 'Russian Federation',
+                    'la' => 'Foederatio Russica',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Vladimir Putin',
+                    'la' => 'Vladimirus Putin',
+                ],
                 'title' => PRESIDENT,
                 'economy' => FREE_MARKET,
                 'government' => DEMOCRACY,
@@ -378,18 +515,23 @@ if (array_key_exists($nera, $civ[$add]['var'])) {
     $era = array_key_first($civ[$add]['var']);
 }
 
+if (file_exists($add)) {
+    exec('chmod -R 777 .');
+    exec('rm -rf '.$add);
+}
+
 mkdir($add);
 chmod($add, 0777);
-file_get_contents($add.'/coord', $civ[$add]['coord']);
+file_put_contents($add.'/coord', $civ[$add]['coord']);
 chmod($add.'/coord', 0777);
-file_get_contents($add.'/rating', $civ[$add]['rating']);
+file_put_contents($add.'/rating', $civ[$add]['rating']);
 chmod($add.'/rating', 0777);
-file_get_contents($add.'/mode', $civ[$add]['mode']);
+file_put_contents($add.'/mode', $civ[$add]['mode']);
 chmod($add.'/mode', 0777);
 
-file_get_contents($add.'/name', $civ[$add]['var'][$era]['name']);
+file_put_contents($add.'/name', $civ[$add]['var'][$era]['name'][$lingua]);
 chmod($add.'/name', 0777);
-file_get_contents($add.'/leader', $civ[$add]['var'][$era]['leader']);
+file_put_contents($add.'/leader', $civ[$add]['var'][$era]['leader'][$lingua]);
 chmod($add.'/leader', 0777);
 
 if (!isset($civ[$add]['var'][$era]['started'])) {
@@ -408,21 +550,21 @@ if (!isset($civ[$add]['var'][$era]['started'])) {
     $erainfo = $civ[$add]['var'][$era]['era'] . ' (' . $yrex . ' - ' . $yrad . ')';
 }
 
-file_get_contents($add.'/erainfo.txt', $erainfo);
+file_put_contents($add.'/erainfo.txt', $erainfo);
 chmod($add.'/erainfo.txt', 0777);
 
 if (isset($civ[$add]['var'][$era]['title'])) {
     if ($civ[$add]['var'][$era]['government'] == DEMOCRACY || $civ[$add]['var'][$era]['government'] == FASCISM || $civ[$add]['var'][$era]['government'] == COMMUNISM) {
-        $civ[$add]['var'][$era]['title'] . ' ' . $dictus[$lingua]['de'] . ' ' . $civ[$add]['var'][$era]['name'] . ', ' . $civ[$add]['var'][$era]['leader'];
+        $civbard = $civ[$add]['var'][$era]['title'] . ' ' . $dictus[$lingua]['de'] . ' ' . $civ[$add]['var'][$era]['name'][$lingua] . ', ' . $civ[$add]['var'][$era]['leader'][$lingua];
     } else {
-        $civbard = $civ[$add]['var'][$era]['title'] . ' ' . $civ[$add]['var'][$era]['leader'] . ' ' . $dictus[$lingua]['de'] . ' ' . $civ[$add]['var'][$era]['name'];
+        $civbard = $civ[$add]['var'][$era]['title'] . ' ' . $civ[$add]['var'][$era]['leader'][$lingua] . ' ' . $dictus[$lingua]['de'] . ' ' . $civ[$add]['var'][$era]['name'][$lingua];
     }
 } else {
-    $civbard = $civ[$add]['var'][$era]['leader'] . ' ' . $dictus[$lingua]['de'] . ' ' . $civ[$add]['var'][$era]['name'];
+    $civbard = $civ[$add]['var'][$era]['leader'][$lingua] . ' ' . $dictus[$lingua]['de'] . ' ' . $civ[$add]['var'][$era]['name'][$lingua];
 }
 
 $civinfo = $civbard . ' (' . $civ[$add]['var'][$era]['economy'] . ' ' . $civ[$add]['var'][$era]['government'] . ')';
-file_get_contents($add.'/civinfo.txt', $civinfo);
+file_put_contents($add.'/civinfo.txt', $civinfo);
 chmod($add.'/civinfo.txt', 0777);
 
 if (file_exists('flags')) {
@@ -433,8 +575,7 @@ if (file_exists('flags')) {
 exec('git clone https://github.com/wholemarket/flags');
 chmod('flags', 0777);
 
-copy('./flags/'.$add.'-'.$era.'.png', './favicon.png');
-chmod('favicon.png', 0777);
+copy('./flags/'.$add.'-'.$era.'.png', './'.$add.'/favicon.png');
 exec('chmod -R 777 .');
 exec('rm -rf flags');
 
