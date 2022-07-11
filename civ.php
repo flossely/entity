@@ -118,7 +118,7 @@ define('END_V', 1900);
 define('ERA_VI', $dictus[$lingua]['modern_era']);
 define('START_VI', 1900);
 define('END_VI', 1950);
-define('ERA_VII', $dictus[$lingua]['atomic era']);
+define('ERA_VII', $dictus[$lingua]['atomic_era']);
 define('START_VII', 1950);
 define('END_VII', 1990);
 define('ERA_VIII', $dictus[$lingua]['information_era']);
