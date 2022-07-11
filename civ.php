@@ -54,12 +54,12 @@ $dictus =
         'ancient_era' => 'Antiquitas',
         'classical_era' => 'Antiquitas Classica',
         'medieval_era' => 'Medium Aevum',
-        'renaissance_era' => 'Aevum Litterarum Artiumque Renatarum',
-        'industrial_era' => 'Aevum Investigatium',
-        'modern_era' => 'Recentioris Aetatis',
-        'atomic_era' => 'Nuclei Aetas',
-        'information_era' => 'Informationes Aetatis',
-        'future_era' => 'Futurae Aetatis',
+        'renaissance_era' => 'Aevum Renascentiae',
+        'industrial_era' => 'Aevum Industrialis',
+        'modern_era' => 'Aevum Recentissimum',
+        'atomic_era' => 'Aevum Atomicum',
+        'information_era' => 'Aevum Scientiae',
+        'future_era' => 'Aevum Futurum',
         'space_era' => 'Aevum Spatio',
         'de' => 'de',
         'chiefdom' => 'Principatus',
@@ -101,7 +101,11 @@ function yearconv($year)
     return $num . ' ' . $append;
 }
 
+define('INFINITY_BC', '-∞');
+define('INFINITY_AD', '∞');
+
 define('ERA_I', $dictus[$lingua]['ancient_era']);
+define('START_I', INFINITY_BC);
 define('END_I', -1000);
 define('ERA_II', $dictus[$lingua]['classical_era']);
 define('START_II', -1000);
@@ -129,6 +133,7 @@ define('START_IX', 2050);
 define('END_IX', 2100);
 define('ERA_X', $dictus[$lingua]['space_era']);
 define('START_X', 2100);
+define('END_X', INFINITY_AD);
 
 define('CHIEFDOM', $dictus[$lingua]['chiefdom']);
 define('AUTOCRACY', $dictus[$lingua]['autocracy']);
@@ -166,6 +171,24 @@ $civ =
         'coord' => '12.49750000;41.90500000;56',
         'var' =>
         [
+            'i' =>
+            [
+                'era' => ERA_I,
+                'started' => START_I,
+                'ended' => END_I,
+                'name' =>
+                [
+                    'en' => 'Indo-European Tribes',
+                    'la' => 'Tribuum Indo-Europaeae',
+                ],
+                'leader' =>
+                [
+                    'en' => 'Antiochus X Eusebes Philopator',
+                    'la' => 'Antiochus X Evsevis Philopatoris',
+                ],
+                'economy' => NATURAL_ECONOMY,
+                'government' => CHIEFDOM,
+            ],
             'ii' =>
             [
                 'era' => ERA_II,
@@ -534,21 +557,21 @@ chmod($add.'/name', 0777);
 file_put_contents($add.'/leader', $civ[$add]['var'][$era]['leader'][$lingua]);
 chmod($add.'/leader', 0777);
 
-if (!isset($civ[$add]['var'][$era]['started'])) {
-    $endyear = $civ[$add]['var'][$era]['ended'];
+$startyear = $civ[$add]['var'][$era]['started'];
+$endyear = $civ[$add]['var'][$era]['ended'];
+
+if ($startyear == INFINITY_BC) {
+    $yrex = $startyear;
     $yrad = yearconv($endyear);
-    $erainfo = $civ[$add]['var'][$era]['era'] . ' (∞ - ' . $yrad . ')';
-} elseif (!isset($civ[$add]['var'][$era]['ended'])) {
-    $startyear = $civ[$add]['var'][$era]['started'];
+} elseif ($endyear == INFINITY_AD) {
     $yrex = yearconv($startyear);
-    $erainfo = $civ[$add]['var'][$era]['era'] . ' (' . $yrex . ' - ∞)';
+    $yrad = $endyear;
 } else {
-    $startyear = $civ[$add]['var'][$era]['started'];
-    $endyear = $civ[$add]['var'][$era]['ended'];
     $yrex = yearconv($startyear);
     $yrad = yearconv($endyear);
-    $erainfo = $civ[$add]['var'][$era]['era'] . ' (' . $yrex . ' - ' . $yrad . ')';
 }
+
+$erainfo = $civ[$add]['var'][$era]['era'] . ' (' . $yrex . ' - ' . $yrad . ')';
 
 file_put_contents($add.'/erainfo.txt', $erainfo);
 chmod($add.'/erainfo.txt', 0777);
