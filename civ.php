@@ -1,93 +1,7 @@
 <?php
 
-if (file_exists("locale")) {
-    $localeOpen = file_get_contents("locale");
-    $locale = ($localeOpen != "") ? $localeOpen : "en";
-} else {
-    $locale = "en";
-}
-
-$lingua = $locale;
-
-$dictus =
-[
-    "en" =>
-    [
-        "ancient_era" => "Ancient Era",
-        "classical_era" => "Classical Era",
-        "medieval_era" => "Medieval Era",
-        "renaissance_era" => "Renaissance Era",
-        "industrial_era" => "Industrial Era",
-        "modern_era" => "Modern Era",
-        "atomic_era" => "Atomic Era",
-        "information_era" => "Information Era",
-        "future_era" => "Future Era",
-        "space_era" => "Space Era",
-        "de" => "of the",
-        "chiefdom" => "Chiefdom",
-        "autocracy" => "Autocracy",
-        "oligarchy" => "Oligarchy",
-        "classical_republic" => "Classical Republic",
-        "monarchy" => "Monarchy",
-        "theocracy" => "Theocracy",
-        "merchant_republic" => "Merchant Republic",
-        "fascism" => "Fascism",
-        "communism" => "Communism",
-        "democracy" => "Democracy",
-        "natural_economy" => "Natural Economy",
-        "free_market" => "Free Market",
-        "fair_market" => "Fair Market",
-        "planned_economy" => "Planned Economy",
-        "king" => "King",
-        "queen" => "Queen",
-        "prince" => "Prince",
-        "princess" => "Princess",
-        "duke" => "Duke",
-        "duchess" => "Duchess",
-        "caesar" => "Tsar",
-        "emperor" => "Emperor",
-        "empress" => "Empress",
-        "president" => "President",
-    ],
-    "la" =>
-    [
-        "ancient_era" => "Antiquitas",
-        "classical_era" => "Antiquitas Classica",
-        "medieval_era" => "Medium Aevum",
-        "renaissance_era" => "Aevum Renascentiae",
-        "industrial_era" => "Aevum Industrialis",
-        "modern_era" => "Aevum Recentissimum",
-        "atomic_era" => "Aevum Atomicum",
-        "information_era" => "Aevum Scientiae",
-        "future_era" => "Aevum Futurum",
-        "space_era" => "Aevum Spatio",
-        "de" => "de",
-        "chiefdom" => "Principatus",
-        "autocracy" => "Autocratia",
-        "oligarchy" => "Oligarchia",
-        "classical_republic" => "Res Publica Classica",
-        "monarchy" => "Monarchia",
-        "theocracy" => "Theocratia",
-        "merchant_republic" => "Mercator Rem Publicam",
-        "fascism" => "Fascismus",
-        "communism" => "Communismus",
-        "democracy" => "Democratia",
-        "natural_economy" => "Naturalis Oeconomia",
-        "free_market" => "Liberum Forum",
-        "fair_market" => "Aequum Forum",
-        "planned_economy" => "Cogitavit Oeconomia",
-        "king" => "Rex",
-        "queen" => "Regina",
-        "prince" => "Princeps",
-        "princess" => "Regia Puella",
-        "duke" => "Dux",
-        "duchess" => "Ducissa",
-        "caesar" => "Caesar",
-        "emperor" => "Imperator",
-        "empress" => "Imperatrix",
-        "president" => "Praesidens",
-    ],
-];
+include 'system.php';
+include 'cividictus.php';
 
 function yearconv($year)
 {
@@ -104,63 +18,63 @@ function yearconv($year)
 define("INFINITY_BC", "-∞");
 define("INFINITY_AD", "∞");
 
-define("ERA_I", $dictus[$lingua]["ancient_era"]);
+define("ERA_I", $cividictus[$lingua]["ancient_era"]);
 define("START_I", INFINITY_BC);
 define("END_I", -1000);
-define("ERA_II", $dictus[$lingua]["classical_era"]);
+define("ERA_II", $cividictus[$lingua]["classical_era"]);
 define("START_II", -1000);
 define("END_II", 476);
-define("ERA_III", $dictus[$lingua]["medieval_era"]);
+define("ERA_III", $cividictus[$lingua]["medieval_era"]);
 define("START_III", 476);
 define("END_III", 1500);
-define("ERA_IV", $dictus[$lingua]["renaissance_era"]);
+define("ERA_IV", $cividictus[$lingua]["renaissance_era"]);
 define("START_IV", 1500);
 define("END_IV", 1700);
-define("ERA_V", $dictus[$lingua]["industrial_era"]);
+define("ERA_V", $cividictus[$lingua]["industrial_era"]);
 define("START_V", 1700);
 define("END_V", 1900);
-define("ERA_VI", $dictus[$lingua]["modern_era"]);
+define("ERA_VI", $cividictus[$lingua]["modern_era"]);
 define("START_VI", 1900);
 define("END_VI", 1950);
-define("ERA_VII", $dictus[$lingua]["atomic_era"]);
+define("ERA_VII", $cividictus[$lingua]["atomic_era"]);
 define("START_VII", 1950);
 define("END_VII", 1990);
-define("ERA_VIII", $dictus[$lingua]["information_era"]);
+define("ERA_VIII", $cividictus[$lingua]["information_era"]);
 define("START_VIII", 1990);
 define("END_VIII", 2050);
-define("ERA_IX", $dictus[$lingua]["future_era"]);
+define("ERA_IX", $cividictus[$lingua]["future_era"]);
 define("START_IX", 2050);
 define("END_IX", 2100);
-define("ERA_X", $dictus[$lingua]["space_era"]);
+define("ERA_X", $cividictus[$lingua]["space_era"]);
 define("START_X", 2100);
 define("END_X", INFINITY_AD);
 
-define("CHIEFDOM", $dictus[$lingua]["chiefdom"]);
-define("AUTOCRACY", $dictus[$lingua]["autocracy"]);
-define("OLIGARCHY", $dictus[$lingua]["oligarchy"]);
-define("CLASSICAL_REPUBLIC", $dictus[$lingua]["classical_republic"]);
-define("MONARCHY", $dictus[$lingua]["monarchy"]);
-define("THEOCRACY", $dictus[$lingua]["theocracy"]);
-define("MERCHANT_REPUBLIC", $dictus[$lingua]["merchant_republic"]);
-define("FASCISM", $dictus[$lingua]["fascism"]);
-define("COMMUNISM", $dictus[$lingua]["communism"]);
-define("DEMOCRACY", $dictus[$lingua]["democracy"]);
+define("CHIEFDOM", $cividictus[$lingua]["chiefdom"]);
+define("AUTOCRACY", $cividictus[$lingua]["autocracy"]);
+define("OLIGARCHY", $cividictus[$lingua]["oligarchy"]);
+define("CLASSICAL_REPUBLIC", $cividictus[$lingua]["classical_republic"]);
+define("MONARCHY", $cividictus[$lingua]["monarchy"]);
+define("THEOCRACY", $cividictus[$lingua]["theocracy"]);
+define("MERCHANT_REPUBLIC", $cividictus[$lingua]["merchant_republic"]);
+define("FASCISM", $cividictus[$lingua]["fascism"]);
+define("COMMUNISM", $cividictus[$lingua]["communism"]);
+define("DEMOCRACY", $cividictus[$lingua]["democracy"]);
 
-define("NATURAL_ECONOMY", $dictus[$lingua]["natural_economy"]);
-define("FREE_MARKET", $dictus[$lingua]["free_market"]);
-define("FAIR_MARKET", $dictus[$lingua]["fair_market"]);
-define("PLANNED_ECONOMY", $dictus[$lingua]["planned_economy"]);
+define("NATURAL_ECONOMY", $cividictus[$lingua]["natural_economy"]);
+define("FREE_MARKET", $cividictus[$lingua]["free_market"]);
+define("FAIR_MARKET", $cividictus[$lingua]["fair_market"]);
+define("PLANNED_ECONOMY", $cividictus[$lingua]["planned_economy"]);
 
-define("KING", $dictus[$lingua]["king"]);
-define("QUEEN", $dictus[$lingua]["queen"]);
-define("PRINCE", $dictus[$lingua]["prince"]);
-define("PRINCESS", $dictus[$lingua]["princess"]);
-define("DUKE", $dictus[$lingua]["duke"]);
-define("DUCHESS", $dictus[$lingua]["duchess"]);
-define("CAESAR", $dictus[$lingua]["caesar"]);
-define("EMPEROR", $dictus[$lingua]["emperor"]);
-define("EMPRESS", $dictus[$lingua]["empress"]);
-define("PRESIDENT", $dictus[$lingua]["president"]);
+define("KING", $cividictus[$lingua]["king"]);
+define("QUEEN", $cividictus[$lingua]["queen"]);
+define("PRINCE", $cividictus[$lingua]["prince"]);
+define("PRINCESS", $cividictus[$lingua]["princess"]);
+define("DUKE", $cividictus[$lingua]["duke"]);
+define("DUCHESS", $cividictus[$lingua]["duchess"]);
+define("CAESAR", $cividictus[$lingua]["caesar"]);
+define("EMPEROR", $cividictus[$lingua]["emperor"]);
+define("EMPRESS", $cividictus[$lingua]["empress"]);
+define("PRESIDENT", $cividictus[$lingua]["president"]);
 
 $civ =
 [
@@ -774,12 +688,12 @@ chmod($add."/erainfo.txt", 0777);
 
 if (isset($civ[$add]["var"][$era]["title"])) {
     if ($civ[$add]["var"][$era]["government"] == DEMOCRACY || $civ[$add]["var"][$era]["government"] == FASCISM || $civ[$add]["var"][$era]["government"] == COMMUNISM) {
-        $civbard = $civ[$add]["var"][$era]["title"] . " " . $dictus[$lingua]["de"] . " " . $civ[$add]["var"][$era]["name"][$lingua] . ", " . $civ[$add]["var"][$era]["leader"][$lingua];
+        $civbard = $civ[$add]["var"][$era]["title"] . " " . $cividictus[$lingua]["de"] . " " . $civ[$add]["var"][$era]["name"][$lingua] . ", " . $civ[$add]["var"][$era]["leader"][$lingua];
     } else {
-        $civbard = $civ[$add]["var"][$era]["title"] . " " . $civ[$add]["var"][$era]["leader"][$lingua] . " " . $dictus[$lingua]["de"] . " " . $civ[$add]["var"][$era]["name"][$lingua];
+        $civbard = $civ[$add]["var"][$era]["title"] . " " . $civ[$add]["var"][$era]["leader"][$lingua] . " " . $cividictus[$lingua]["de"] . " " . $civ[$add]["var"][$era]["name"][$lingua];
     }
 } else {
-    $civbard = $civ[$add]["var"][$era]["leader"][$lingua] . " " . $dictus[$lingua]["de"] . " " . $civ[$add]["var"][$era]["name"][$lingua];
+    $civbard = $civ[$add]["var"][$era]["leader"][$lingua] . " " . $cividictus[$lingua]["de"] . " " . $civ[$add]["var"][$era]["name"][$lingua];
 }
 
 $civinfo = $civbard . " (" . $civ[$add]["var"][$era]["economy"] . " " . $civ[$add]["var"][$era]["government"] . ")";
