@@ -127,6 +127,15 @@ chmod($add."/leader", 0777);
 file_put_contents($add."/era", $era);
 chmod($add."/era", 0777);
 
+file_put_contents($add."/economy", $civ[$add]["var"][$era]["economy"]);
+chmod($add."/economy", 0777);
+file_put_contents($add."/government", $civ[$add]["var"][$era]["government"]);
+chmod($add."/government", 0777);
+if (isset($civ[$add]["var"][$era]["title"])) {
+    file_put_contents($add."/title", $civ[$add]["var"][$era]["title"]);
+    chmod($add."/title", 0777);
+}
+
 $startyear = $civ[$add]["var"][$era]["started"];
 $endyear = $civ[$add]["var"][$era]["ended"];
 
