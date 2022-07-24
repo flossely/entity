@@ -666,6 +666,8 @@ file_put_contents($add."/name", $civ[$add]["var"][$era]["name"][$lingua]);
 chmod($add."/name", 0777);
 file_put_contents($add."/leader", $civ[$add]["var"][$era]["leader"][$lingua]);
 chmod($add."/leader", 0777);
+file_put_contents($add."/era", $era);
+chmod($add."/era", 0777);
 
 $startyear = $civ[$add]["var"][$era]["started"];
 $endyear = $civ[$add]["var"][$era]["ended"];
