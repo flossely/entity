@@ -1,6 +1,14 @@
 <?php
 
-include 'system.php';
+if (file_exists("locale")) {
+    $localeOpen = file_get_contents("locale");
+    $locale = ($localeOpen != "") ? $localeOpen : "en";
+} else {
+    $locale = "en";
+}
+
+$lingua = $locale;
+
 include 'cividictus.php';
 
 function yearconv($year)
@@ -50,15 +58,26 @@ define("START_X", 2100);
 define("END_X", INFINITY_AD);
 
 define("CHIEFDOM", $cividictus[$lingua]["chiefdom"]);
+
 define("AUTOCRACY", $cividictus[$lingua]["autocracy"]);
-define("OLIGARCHY", $cividictus[$lingua]["oligarchy"]);
 define("CLASSICAL_REPUBLIC", $cividictus[$lingua]["classical_republic"]);
+define("OLIGARCHY", $cividictus[$lingua]["oligarchy"]);
+
+define("MERCHANT_REPUBLIC", $cividictus[$lingua]["merchant_republic"]);
 define("MONARCHY", $cividictus[$lingua]["monarchy"]);
 define("THEOCRACY", $cividictus[$lingua]["theocracy"]);
-define("MERCHANT_REPUBLIC", $cividictus[$lingua]["merchant_republic"]);
-define("FASCISM", $cividictus[$lingua]["fascism"]);
+
 define("COMMUNISM", $cividictus[$lingua]["communism"]);
 define("DEMOCRACY", $cividictus[$lingua]["democracy"]);
+define("FASCISM", $cividictus[$lingua]["fascism"]);
+
+define("MARKET_SOCIALISM", $cividictus[$lingua]["market_socialism"]);
+define("NEOLIBERAL_REPUBLIC", $cividictus[$lingua]["neoliberal_republic"]);
+define("NEOCOLONIAL_EMPIRE", $cividictus[$lingua]["neocolonial_empire"]);
+
+define("DIGITAL_DEMOCRACY", $cividictus[$lingua]["digital_democracy"]);
+define("SYNTHETIC_TECHNOCRACY", $cividictus[$lingua]["synthetic_technocracy"]);
+define("CORPORATE_LIBERTARIANISM", $cividictus[$lingua]["corporate_libertarianism"]);
 
 define("NATURAL_ECONOMY", $cividictus[$lingua]["natural_economy"]);
 define("FREE_MARKET", $cividictus[$lingua]["free_market"]);
@@ -233,6 +252,44 @@ $civ =
                 "economy" => FREE_MARKET,
                 "government" => DEMOCRACY,
             ],
+            "ix" =>
+            [
+                "era" => ERA_IX,
+                "started" => START_IX,
+                "ended" => END_IX,
+                "name" =>
+                [
+                    "en" => "European Union",
+                    "la" => "Unio Europaea",
+                ],
+                "leader" =>
+                [
+                    "en" => "Karl Benedict X",
+                    "la" => "Carolus Benedictus X",
+                ],
+                "title" => PRINCE,
+                "economy" => FREE_MARKET,
+                "government" => DEMOCRACY,
+            ],
+            "x" =>
+            [
+                "era" => ERA_X,
+                "started" => START_X,
+                "ended" => END_X,
+                "name" =>
+                [
+                    "en" => "European Galactic Empire",
+                    "la" => "Imperium Europaeum Galacticum",
+                ],
+                "leader" =>
+                [
+                    "en" => "Heinrich V Braun",
+                    "la" => "Henricus V Brunus",
+                ],
+                "title" => EMPEROR,
+                "economy" => FREE_MARKET,
+                "government" => DEMOCRACY,
+            ],
         ],
     ],
     "us" =>
@@ -313,6 +370,44 @@ $civ =
                 [
                     "en" => "Donald Trump",
                     "la" => "Donaldus Trumphius",
+                ],
+                "title" => PRESIDENT,
+                "economy" => FREE_MARKET,
+                "government" => DEMOCRACY,
+            ],
+            "ix" =>
+            [
+                "era" => ERA_IX,
+                "started" => START_IX,
+                "ended" => END_IX,
+                "name" =>
+                [
+                    "en" => "United States of America",
+                    "la" => "Foederatae Americae",
+                ],
+                "leader" =>
+                [
+                    "en" => "Joe Hummings",
+                    "la" => "Josephus Fremitus",
+                ],
+                "title" => PRESIDENT,
+                "economy" => FREE_MARKET,
+                "government" => DEMOCRACY,
+            ],
+            "x" =>
+            [
+                "era" => ERA_X,
+                "started" => START_X,
+                "ended" => END_X,
+                "name" =>
+                [
+                    "en" => "North American Space Federation",
+                    "la" => "Spatium Foederationis Americae Septentrionalis",
+                ],
+                "leader" =>
+                [
+                    "en" => "Alex Jenkins",
+                    "la" => "Alexander Americanus",
                 ],
                 "title" => PRESIDENT,
                 "economy" => FREE_MARKET,
@@ -472,6 +567,44 @@ $civ =
                 [
                     "en" => "Vladimir Putin",
                     "la" => "Vladimirus Putin",
+                ],
+                "title" => PRESIDENT,
+                "economy" => FREE_MARKET,
+                "government" => DEMOCRACY,
+            ],
+            "ix" =>
+            [
+                "era" => ERA_IX,
+                "started" => START_IX,
+                "ended" => END_IX,
+                "name" =>
+                [
+                    "en" => "Russian Federation",
+                    "la" => "Foederatio Russica",
+                ],
+                "leader" =>
+                [
+                    "en" => "Igor Berezovsky",
+                    "la" => "Inguarus Berezowski",
+                ],
+                "title" => PRESIDENT,
+                "economy" => FREE_MARKET,
+                "government" => DEMOCRACY,
+            ],
+            "x" =>
+            [
+                "era" => ERA_X,
+                "started" => START_X,
+                "ended" => END_X,
+                "name" =>
+                [
+                    "en" => "Commonwealth of Independent States",
+                    "la" => "Independentium Civitatum Foederatio",
+                ],
+                "leader" =>
+                [
+                    "en" => "Pavel Antonov",
+                    "la" => "Paulus Antonius",
                 ],
                 "title" => PRESIDENT,
                 "economy" => FREE_MARKET,
