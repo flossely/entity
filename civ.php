@@ -23,78 +23,7 @@ function yearconv($year)
     return $num . " " . $append;
 }
 
-define("INFINITY_BC", "-∞");
-define("INFINITY_AD", "∞");
-
-define("ERA_I", $cividictus[$lingua]["ancient_era"]);
-define("START_I", INFINITY_BC);
-define("END_I", -1000);
-define("ERA_II", $cividictus[$lingua]["classical_era"]);
-define("START_II", -1000);
-define("END_II", 476);
-define("ERA_III", $cividictus[$lingua]["medieval_era"]);
-define("START_III", 476);
-define("END_III", 1500);
-define("ERA_IV", $cividictus[$lingua]["renaissance_era"]);
-define("START_IV", 1500);
-define("END_IV", 1700);
-define("ERA_V", $cividictus[$lingua]["industrial_era"]);
-define("START_V", 1700);
-define("END_V", 1900);
-define("ERA_VI", $cividictus[$lingua]["modern_era"]);
-define("START_VI", 1900);
-define("END_VI", 1950);
-define("ERA_VII", $cividictus[$lingua]["atomic_era"]);
-define("START_VII", 1950);
-define("END_VII", 1990);
-define("ERA_VIII", $cividictus[$lingua]["information_era"]);
-define("START_VIII", 1990);
-define("END_VIII", 2050);
-define("ERA_IX", $cividictus[$lingua]["future_era"]);
-define("START_IX", 2050);
-define("END_IX", 2100);
-define("ERA_X", $cividictus[$lingua]["space_era"]);
-define("START_X", 2100);
-define("END_X", INFINITY_AD);
-
-define("CHIEFDOM", $cividictus[$lingua]["chiefdom"]);
-
-define("AUTOCRACY", $cividictus[$lingua]["autocracy"]);
-define("CLASSICAL_REPUBLIC", $cividictus[$lingua]["classical_republic"]);
-define("OLIGARCHY", $cividictus[$lingua]["oligarchy"]);
-
-define("MERCHANT_REPUBLIC", $cividictus[$lingua]["merchant_republic"]);
-define("MONARCHY", $cividictus[$lingua]["monarchy"]);
-define("THEOCRACY", $cividictus[$lingua]["theocracy"]);
-
-define("COMMUNISM", $cividictus[$lingua]["communism"]);
-define("DEMOCRACY", $cividictus[$lingua]["democracy"]);
-define("FASCISM", $cividictus[$lingua]["fascism"]);
-
-define("MARKET_SOCIALISM", $cividictus[$lingua]["market_socialism"]);
-define("NEOLIBERAL_REPUBLIC", $cividictus[$lingua]["neoliberal_republic"]);
-define("NEOCOLONIAL_EMPIRE", $cividictus[$lingua]["neocolonial_empire"]);
-
-define("DIGITAL_DEMOCRACY", $cividictus[$lingua]["digital_democracy"]);
-define("SYNTHETIC_TECHNOCRACY", $cividictus[$lingua]["synthetic_technocracy"]);
-define("CORPORATE_LIBERTARIANISM", $cividictus[$lingua]["corporate_libertarianism"]);
-
-define("NATURAL_ECONOMY", $cividictus[$lingua]["natural_economy"]);
-define("FREE_MARKET", $cividictus[$lingua]["free_market"]);
-define("FAIR_MARKET", $cividictus[$lingua]["fair_market"]);
-define("PLANNED_ECONOMY", $cividictus[$lingua]["planned_economy"]);
-
-define("KING", $cividictus[$lingua]["king"]);
-define("QUEEN", $cividictus[$lingua]["queen"]);
-define("PRINCE", $cividictus[$lingua]["prince"]);
-define("PRINCESS", $cividictus[$lingua]["princess"]);
-define("DUKE", $cividictus[$lingua]["duke"]);
-define("DUCHESS", $cividictus[$lingua]["duchess"]);
-define("CAESAR", $cividictus[$lingua]["caesar"]);
-define("EMPEROR", $cividictus[$lingua]["emperor"]);
-define("EMPRESS", $cividictus[$lingua]["empress"]);
-define("PRESIDENT", $cividictus[$lingua]["president"]);
-
+include 'civconst.php';
 include 'civilopedia.php';
 
 $add = $_REQUEST["id"];

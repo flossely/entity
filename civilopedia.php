@@ -24,6 +24,7 @@ $civ =
                     "en" => "Antiochus X Eusebes Philopator",
                     "la" => "Antiochus X Evsevis Philopatoris",
                 ],
+                "title" => FOUNDING_FATHER,
                 "economy" => NATURAL_ECONOMY,
                 "government" => CHIEFDOM,
             ],
@@ -42,6 +43,7 @@ $civ =
                     "en" => "Julius Caesar",
                     "la" => "Julius Caesar",
                 ],
+                "title" => EMPEROR,
                 "economy" => FREE_MARKET,
                 "government" => AUTOCRACY,
             ],
@@ -117,6 +119,7 @@ $civ =
                     "en" => "Charles de Gaulle",
                     "la" => "Carolus de Gaulle",
                 ],
+                "title" => PRESIDENT,
                 "economy" => FREE_MARKET,
                 "government" => FASCISM,
             ],
@@ -135,6 +138,7 @@ $civ =
                     "en" => "François Mitterrand",
                     "la" => "Franciscus Mitterrand",
                 ],
+                "title" => PRESIDENT,
                 "economy" => FREE_MARKET,
                 "government" => COMMUNISM,
             ],
@@ -192,6 +196,205 @@ $civ =
                     "la" => "Henricus V Brunus",
                 ],
                 "title" => EMPEROR,
+                "economy" => FREE_MARKET,
+                "government" => DEMOCRACY,
+            ],
+        ],
+    ],
+    "un" =>
+    [
+        "rating" => 0.00001000,
+        "mode" => 0,
+        "coord" => "0;0;0",
+        "var" =>
+        [
+            "i" =>
+            [
+                "era" => ERA_I,
+                "started" => START_I,
+                "ended" => END_I,
+                "name" =>
+                [
+                    "en" => "Twelve Tribes of Israel",
+                    "la" => "Duodecim Tribus Israelis",
+                ],
+                "leader" =>
+                [
+                    "en" => "Jacob",
+                    "la" => "Iacobus",
+                ],
+                "title" => PATRIARCH,
+                "economy" => NATURAL_ECONOMY,
+                "government" => CHIEFDOM,
+            ],
+            "ii" =>
+            [
+                "era" => ERA_II,
+                "started" => START_II,
+                "ended" => END_II,
+                "name" =>
+                [
+                    "en" => "Ancient Judea",
+                    "la" => "Antiqua Iudaea",
+                ],
+                "leader" =>
+                [
+                    "en" => "Herod",
+                    "la" => "Herodes",
+                ],
+                "title" => KING,
+                "economy" => FAIR_MARKET,
+                "government" => CLAN,
+            ],
+            "iii" =>
+            [
+                "era" => ERA_III,
+                "started" => START_III,
+                "ended" => END_III,
+                "name" =>
+                [
+                    "en" => "Judeans (Exile)",
+                    "la" => "Judaei (Exilium)",
+                ],
+                "leader" =>
+                [
+                    "en" => "Abraham",
+                    "la" => "Abrahamus",
+                ],
+                "title" => CHIEF,
+                "economy" => FREE_MARKET,
+                "government" => CLAN,
+            ],
+            "iv" =>
+            [
+                "era" => ERA_IV,
+                "started" => START_IV,
+                "ended" => END_IV,
+                "name" =>
+                [
+                    "en" => "Judeans (Exile)",
+                    "la" => "Judaei (Exilium)",
+                ],
+                "leader" =>
+                [
+                    "en" => "Isaac",
+                    "la" => "Isaacus",
+                ],
+                "title" => CHIEF,
+                "economy" => FREE_MARKET,
+                "government" => CLAN,
+            ],
+            "v" =>
+            [
+                "era" => ERA_V,
+                "started" => START_V,
+                "ended" => END_V,
+                "name" =>
+                [
+                    "en" => "Judeans (Exile)",
+                    "la" => "Judaei (Exilium)",
+                ],
+                "leader" =>
+                [
+                    "en" => "Ephraim",
+                    "la" => "Ephraim",
+                ],
+                "title" => CHIEF,
+                "economy" => FREE_MARKET,
+                "government" => CLAN,
+            ],
+            "vi" =>
+            [
+                "era" => ERA_VI,
+                "started" => START_VI,
+                "ended" => END_VI,
+                "name" =>
+                [
+                    "en" => "Judeans (Exile)",
+                    "la" => "Judaei (Exilium)",
+                ],
+                "leader" =>
+                [
+                    "en" => "Mark",
+                    "la" => "Marcus",
+                ],
+                "title" => CHIEF,
+                "economy" => FREE_MARKET,
+                "government" => CLAN,
+            ],
+            "vii" =>
+            [
+                "era" => ERA_VII,
+                "started" => START_VII,
+                "ended" => END_VII,
+                "name" =>
+                [
+                    "en" => "State of Israel",
+                    "la" => "Civitatis Israelae",
+                ],
+                "leader" =>
+                [
+                    "en" => "David Ben-Gurion",
+                    "la" => "David Beniaminus Gurion",
+                ],
+                "title" => PRIME_MINISTER,
+                "economy" => FREE_MARKET,
+                "government" => DEMOCRACY,
+            ],
+            "viii" =>
+            [
+                "era" => ERA_VIII,
+                "started" => START_VIII,
+                "ended" => END_VIII,
+                "name" =>
+                [
+                    "en" => "United Nations",
+                    "la" => "Nationes Unitae",
+                ],
+                "leader" =>
+                [
+                    "en" => "António Guterres",
+                    "la" => "Antonius Guterres",
+                ],
+                "title" => SECRETARY_GENERAL,
+                "economy" => FREE_MARKET,
+                "government" => DEMOCRACY,
+            ],
+            "ix" =>
+            [
+                "era" => ERA_IX,
+                "started" => START_IX,
+                "ended" => END_IX,
+                "name" =>
+                [
+                    "en" => "United Nations",
+                    "la" => "Nationes Unitae",
+                ],
+                "leader" =>
+                [
+                    "en" => "Benedict Thomas",
+                    "la" => "Benedictus Thomas",
+                ],
+                "title" => SECRETARY_GENERAL,
+                "economy" => FREE_MARKET,
+                "government" => DEMOCRACY,
+            ],
+            "x" =>
+            [
+                "era" => ERA_X,
+                "started" => START_X,
+                "ended" => END_X,
+                "name" =>
+                [
+                    "en" => "Multipolar World Forum",
+                    "la" => "Forum Mundi Multipolaris",
+                ],
+                "leader" =>
+                [
+                    "en" => "Karl Zimmermann",
+                    "la" => "Carolus Carpentarius",
+                ],
+                "title" => JUDGE,
                 "economy" => FREE_MARKET,
                 "government" => DEMOCRACY,
             ],
@@ -437,6 +640,7 @@ $civ =
                     "en" => "Vladimir Lenin",
                     "la" => "Vladimirus Ulyanov",
                 ],
+                "title" => CHIEF,
                 "economy" => PLANNED_ECONOMY,
                 "government" => COMMUNISM,
             ],
@@ -455,6 +659,7 @@ $civ =
                     "en" => "Leonid Brezhnev",
                     "la" => "Leonidas Breznev",
                 ],
+                "title" => SECRETARY_GENERAL,
                 "economy" => PLANNED_ECONOMY,
                 "government" => COMMUNISM,
             ],
@@ -539,6 +744,7 @@ $civ =
                     "en" => "Kong Fuzi",
                     "la" => "Confucius",
                 ],
+                "title" => FOUNDING_FATHER,
                 "economy" => NATURAL_ECONOMY,
                 "government" => CHIEFDOM,
             ],
@@ -633,6 +839,7 @@ $civ =
                     "en" => "Sun Yat Sen",
                     "la" => "Magofumi",
                 ],
+                "title" => PRESIDENT,
                 "economy" => FREE_MARKET,
                 "government" => FASCISM,
             ],
@@ -651,7 +858,8 @@ $civ =
                     "en" => "Mao Zedong",
                     "la" => "Motakuto",
                 ],
-                "economy" => FREE_MARKET,
+                "title" => CHIEF,
+                "economy" => PLANNED_ECONOMY,
                 "government" => COMMUNISM,
             ],
             "viii" =>
@@ -671,7 +879,45 @@ $civ =
                 ],
                 "title" => PRESIDENT,
                 "economy" => FREE_MARKET,
-                "government" => COMMUNISM,
+                "government" => MARKET_SOCIALISM,
+            ],
+            "ix" =>
+            [
+                "era" => ERA_IX,
+                "started" => START_IX,
+                "ended" => END_IX,
+                "name" =>
+                [
+                    "en" => "Republic of China",
+                    "la" => "Respublica Sinarum",
+                ],
+                "leader" =>
+                [
+                    "en" => "Jiao Bingbing",
+                    "la" => "Jaobinbin",
+                ],
+                "title" => PRESIDENT,
+                "economy" => FREE_MARKET,
+                "government" => NEOCOLONIAL_EMPIRE,
+            ],
+            "x" =>
+            [
+                "era" => ERA_X,
+                "started" => START_X,
+                "ended" => END_X,
+                "name" =>
+                [
+                    "en" => "Chinese Tech Power",
+                    "la" => "Potentia Technologica Sinarum",
+                ],
+                "leader" =>
+                [
+                    "en" => "Genji Rao",
+                    "la" => "Moto Shirao",
+                ],
+                "title" => PRESIDENT,
+                "economy" => FREE_MARKET,
+                "government" => SYNTHETIC_TECHNOCRACY,
             ],
         ],
     ],
