@@ -10,7 +10,6 @@ if (file_exists("locale")) {
 $lingua = $locale;
 
 include 'cividictus.php';
-include 'civeramap.php';
 
 function yearconv($year)
 {
@@ -25,6 +24,7 @@ function yearconv($year)
 }
 
 include 'civconst.php';
+include 'civeramap.php';
 
 $civ = [];
 
