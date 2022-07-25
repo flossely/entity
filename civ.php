@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(0);
+
 if (file_exists("locale")) {
     $localeOpen = file_get_contents("locale");
     $locale = ($localeOpen != "") ? $localeOpen : "en";
@@ -31,11 +33,7 @@ $civdir = '.';
 $civlist = str_replace($civdir.'/','',(glob($civdir.'/*.civ.php')));
 
 foreach ($civlist as $key=>$value) {
-    try {
-        include $value;
-    } catch (Exception $e) {
-        continue;
-    }
+    include $value;
 }
 
 $add = $_REQUEST["id"];
