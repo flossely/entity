@@ -11,8 +11,6 @@ $lingua = $locale;
 
 include 'cividictus.php';
 
-/*
-
 function yearconv($year)
 {
     if ($year >= 0) {
@@ -24,6 +22,8 @@ function yearconv($year)
     }
     return $num . " " . $append;
 }
+
+/*
 
 include 'civconst.php';
 include 'civilopedia.php';
