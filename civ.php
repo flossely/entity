@@ -98,7 +98,7 @@ $civinfo = $civbard . " (" . $civ[$add]["var"][$era]["economy"] . " " . $civ[$ad
 file_put_contents($add."/civinfo.txt", $civinfo);
 chmod($add."/civinfo.txt", 0777);
 
-if (file_exists($add.'-'.$era)) {
+/*if (file_exists($add.'-'.$era)) {
     chmod($add.'-'.$era, 0777);
     rename($add.'-'.$era, $add.'-'.$era.'.d');
 }
@@ -113,4 +113,4 @@ exec('rm -rf '.$add.'-'.$era);
 if (file_exists($add.'-'.$era.'.d')) {
     chmod($add.'-'.$era.'.d', 0777);
     rename($add.'-'.$era.'.d', $add.'-'.$era);
-}
+}*/
