@@ -68,6 +68,8 @@ file_put_contents($add."/rating", $civ[$add]["rating"]);
 chmod($add."/rating", 0777);
 file_put_contents($add."/mode", $civ[$add]["mode"]);
 chmod($add."/mode", 0777);
+file_put_contents($add."/score", 0);
+chmod($add."/score", 0777);
 
 file_put_contents($add."/name", $civ[$add]["var"][$era]["name"][$lingua]);
 chmod($add."/name", 0777);
