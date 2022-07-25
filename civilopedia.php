@@ -17,7 +17,7 @@ $civ =
                 "name" =>
                 [
                     "en" => "Indo-European Tribes",
-                    "la" => "Tribuum Indo-Europaeae",
+                    "la" => "Tribuum Indogermanicus",
                 ],
                 "leader" =>
                 [

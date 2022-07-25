@@ -99,20 +99,19 @@ $civinfo = $civbard . " (" . $civ[$add]["var"][$era]["economy"] . " " . $civ[$ad
 file_put_contents($add."/civinfo.txt", $civinfo);
 chmod($add."/civinfo.txt", 0777);
 
-if (file_exists("flags")) {
-    chmod("flags", 0777);
-    rename("flags", "flags.d");
+if (file_exists($add.'-'.$era)) {
+    chmod($add.'-'.$era, 0777);
+    rename($add.'-'.$era, $add.'-'.$era.'.d');
 }
 
-exec("git clone https://github.com/wholemarket/flags");
-chmod("flags", 0777);
+exec('git clone https://github.com/civhub/'.$add.'-'.$era);
+chmod($add.'-'.$era, 0777);
 
-copy("./flags/".$add."-".$era.".png", "./".$add."/favicon.png");
-exec("chmod -R 777 .");
-exec("rm -rf flags");
+copy('./'.$add.'-'.$era.'/favicon.png', './'.$add.'/favicon.png');
+exec('chmod -R 777 .');
+exec('rm -rf '.$add.'-'.$era);
 
-if (file_exists("flags.d")) {
-    chmod("flags.d", 0777);
-    rename("flags.d", "flags");
+if (file_exists($add.'-'.$era.'.d')) {
+    chmod($add.'-'.$era.'.d', 0777);
+    rename($add.'-'.$era.'.d', $add.'-'.$era);
 }
-
