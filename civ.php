@@ -31,7 +31,11 @@ $civdir = '.';
 $civlist = str_replace($civdir.'/','',(glob($civdir.'/*.civ.php')));
 
 foreach ($civlist as $key=>$value) {
-    include $value;
+    try {
+        include $value;
+    } catch (Exception $e) {
+        continue;
+    }
 }
 
 $add = $_REQUEST["id"];
