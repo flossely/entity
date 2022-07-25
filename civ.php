@@ -23,9 +23,8 @@ function yearconv($year)
     return $num . " " . $append;
 }
 
-/*
-
 include 'civconst.php';
+/*
 include 'civilopedia.php';
 
 $add = $_REQUEST["id"];
