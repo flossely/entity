@@ -24,8 +24,15 @@ function yearconv($year)
 }
 
 include 'civconst.php';
-include 'civilopedia.php';
-/*
+
+$civ = [];
+
+$civdir = '.';
+$civlist = str_replace($civdir.'/','',(glob($civdir.'/*.civ.php')));
+
+foreach ($civlist as $key=>$value) {
+    include $value;
+}
 
 $add = $_REQUEST["id"];
 $nera = $_REQUEST["era"];
@@ -114,4 +121,4 @@ exec('rm -rf '.$add.'-'.$era);
 if (file_exists($add.'-'.$era.'.d')) {
     chmod($add.'-'.$era.'.d', 0777);
     rename($add.'-'.$era.'.d', $add.'-'.$era);
-}*/
+}
