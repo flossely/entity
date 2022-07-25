@@ -25,7 +25,6 @@ function yearconv($year)
 
 include 'civconst.php';
 include 'civilopedia.php';
-// include 'civinclude.php';
 
 $add = $_REQUEST["id"];
 $nera = $_REQUEST["era"];
