@@ -9,9 +9,9 @@ if (file_exists("locale")) {
 
 $lingua = $locale;
 
-/*
-
 include 'cividictus.php';
+
+/*
 
 function yearconv($year)
 {
