@@ -1,7 +1,5 @@
 <?php
 
-error_reporting(0);
-
 if (file_exists("locale")) {
     $localeOpen = file_get_contents("locale");
     $locale = ($localeOpen != "") ? $localeOpen : "en";
@@ -29,15 +27,27 @@ include 'civconst.php';
 
 $civ = [];
 
-$civdir = '.';
-$civlist = str_replace($civdir.'/','',(glob($civdir.'/*.civ.php')));
-
-foreach ($civlist as $key=>$value) {
-    @include $value;
-}
-
 $add = $_REQUEST["id"];
 $nera = $_REQUEST["era"];
+
+if (file_exists($add.'-civ')) {
+    chmod($add.'-civ', 0777);
+    rename($add.'-civ', $add.'-civ.d');
+}
+
+exec('git clone https://github.com/civhub/'.$add.'-civ');
+chmod($add.'-civ', 0777);
+
+copy('./'.$add.'-civ/'.$add.'.civ.php', './'.$add.'.civ.php');
+exec('chmod -R 777 .');
+exec('rm -rf '.$add.'-civ');
+
+if (file_exists($add.'-civ.d')) {
+    chmod($add.'-civ.d', 0777);
+    rename($add.'-civ.d', $add.'-civ');
+}
+
+include $add.'.civ.php';
 
 if (array_key_exists($nera, $civ[$add]["var"])) {
     $era = $nera;
