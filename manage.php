@@ -370,6 +370,9 @@ if ($mode == 'init') {
         } elseif ($id == 'score') {
             file_put_contents($value.'/score', 0);
             chmod($value.'/score', 0777);
+        } elseif ($id == 'money') {
+            file_put_contents($value.'/money', 0);
+            chmod($value.'/money', 0777);
         } else {
             file_put_contents($value.'/rating', 0);
             chmod($value.'/rating', 0777);
@@ -379,6 +382,8 @@ if ($mode == 'init') {
             chmod($value.'/coord', 0777);
             file_put_contents($value.'/score', 0);
             chmod($value.'/score', 0777);
+            file_put_contents($value.'/money', 0);
+            chmod($value.'/money', 0777);
         }
     }
 } elseif ($mode == 'hit') {

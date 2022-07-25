@@ -10,6 +10,7 @@ if (file_exists("locale")) {
 $lingua = $locale;
 
 include 'cividictus.php';
+include 'civeramap.php';
 
 function yearconv($year)
 {
@@ -66,10 +67,12 @@ file_put_contents($add."/coord", $civ[$add]["coord"]);
 chmod($add."/coord", 0777);
 file_put_contents($add."/rating", $civ[$add]["rating"]);
 chmod($add."/rating", 0777);
-file_put_contents($add."/mode", $civ[$add]["mode"]);
+file_put_contents($add."/mode", 0);
 chmod($add."/mode", 0777);
 file_put_contents($add."/score", 0);
 chmod($add."/score", 0777);
+file_put_contents($add."/money", 0);
+chmod($add."/money", 0777);
 
 file_put_contents($add."/name", $civ[$add]["var"][$era]["name"][$lingua]);
 chmod($add."/name", 0777);
@@ -87,8 +90,8 @@ if (isset($civ[$add]["var"][$era]["title"])) {
     chmod($add."/title", 0777);
 }
 
-$startyear = $civ[$add]["var"][$era]["started"];
-$endyear = $civ[$add]["var"][$era]["ended"];
+$startyear = $civeramap[$era]["started"];
+$endyear = $civeramap[$era]["ended"];
 
 if ($startyear == INFINITY_BC) {
     $yrex = $startyear;
@@ -101,7 +104,7 @@ if ($startyear == INFINITY_BC) {
     $yrad = yearconv($endyear);
 }
 
-$erainfo = $civ[$add]["var"][$era]["era"] . " (" . $yrex . " - " . $yrad . ")";
+$erainfo = $civeramap[$era]["era"] . " (" . $yrex . " - " . $yrad . ")";
 
 file_put_contents($add."/erainfo.txt", $erainfo);
 chmod($add."/erainfo.txt", 0777);
