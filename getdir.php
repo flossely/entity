@@ -33,6 +33,8 @@ if ($key == 'i') {
         chmod($repo.'/mode', 0777);
         file_put_contents($repo.'/rating', 0);
         chmod($repo.'/rating', 0777);
+        file_put_contents($repo.'/score', 0);
+        chmod($repo.'/score', 0777);
     }
     
 // IN CASE YOU WANT TO REPLACE PACKAGE WITH NEW
