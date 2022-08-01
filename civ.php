@@ -55,7 +55,11 @@ function erayear($year)
 $civ = [];
 
 $add = $_REQUEST["id"];
-$today = file_get_contents('year');
+if (file_exists('year')) {
+    $today = file_get_contents('year');
+} else {
+    $today = -2000;
+}
 $era = erayear($today);
 
 if (file_exists($add.'-civ')) {
