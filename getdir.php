@@ -1,5 +1,11 @@
 <?php
 
+if (file_exists('year')) {
+    $today = file_get_contents('year');
+} else {
+    $today = -2000;
+}
+
 // GETTING REQUEST DATA SORTED BY THEIR ORDER IN GET FUNCTION
 $key = $_REQUEST['key'];
 $host = ($_REQUEST['host']) ? $_REQUEST['host'] : 'https://github.com';
@@ -39,6 +45,8 @@ if ($key == 'i') {
         chmod($repo.'/money', 0777);
         file_put_contents($repo.'/age', 0);
         chmod($repo.'/age', 0777);
+        file_put_contents($repo.'/born', $today);
+        chmod($repo.'/born', 0777);
     }
     
 // IN CASE YOU WANT TO REPLACE PACKAGE WITH NEW

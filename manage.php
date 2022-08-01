@@ -1,5 +1,11 @@
 <?php
 
+if (file_exists('year')) {
+    $today = file_get_contents('year');
+} else {
+    $today = -2000;
+}
+
 function recurseCopy(
     string $sourceDirectory,
     string $destinationDirectory,
@@ -376,6 +382,9 @@ if ($mode == 'init') {
         } elseif ($id == 'age') {
             file_put_contents($value.'/age', 0);
             chmod($value.'/age', 0777);
+        } elseif ($id == 'born') {
+            file_put_contents($value.'/born', $today);
+            chmod($value.'/born', 0777);
         } else {
             file_put_contents($value.'/rating', 0);
             chmod($value.'/rating', 0777);
@@ -389,6 +398,8 @@ if ($mode == 'init') {
             chmod($value.'/money', 0777);
             file_put_contents($value.'/age', 0);
             chmod($value.'/age', 0777);
+            file_put_contents($value.'/born', $today);
+            chmod($value.'/born', 0777);
         }
     }
 } elseif ($mode == 'hit') {
