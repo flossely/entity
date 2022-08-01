@@ -1,6 +1,8 @@
 <?php
 
 define("CHIEFDOM", $cividictus[$lingua]["chiefdom"]);
+define("CLAN", $cividictus[$lingua]["clan"]);
+define("COMMUNE", $cividictus[$lingua]["commune"]);
 define("AUTOCRACY", $cividictus[$lingua]["autocracy"]);
 define("CLASSICAL_REPUBLIC", $cividictus[$lingua]["classical_republic"]);
 define("OLIGARCHY", $cividictus[$lingua]["oligarchy"]);
@@ -16,4 +18,3 @@ define("NEOCOLONIAL_EMPIRE", $cividictus[$lingua]["neocolonial_empire"]);
 define("DIGITAL_DEMOCRACY", $cividictus[$lingua]["digital_democracy"]);
 define("SYNTHETIC_TECHNOCRACY", $cividictus[$lingua]["synthetic_technocracy"]);
 define("CORPORATE_LIBERTARIANISM", $cividictus[$lingua]["corporate_libertarianism"]);
-
