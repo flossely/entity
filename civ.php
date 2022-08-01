@@ -103,8 +103,6 @@ file_put_contents($add.'/score', 0);
 chmod($add.'/score', 0777);
 file_put_contents($add.'/money', 0);
 chmod($add.'/money', 0777);
-file_put_contents($add.'/age', 0);
-chmod($add.'/age', 0777);
 file_put_contents($add.'/born', $today);
 chmod($add.'/born', 0777);
 

@@ -379,9 +379,6 @@ if ($mode == 'init') {
         } elseif ($id == 'money') {
             file_put_contents($value.'/money', 0);
             chmod($value.'/money', 0777);
-        } elseif ($id == 'age') {
-            file_put_contents($value.'/age', 0);
-            chmod($value.'/age', 0777);
         } elseif ($id == 'born') {
             file_put_contents($value.'/born', $today);
             chmod($value.'/born', 0777);
@@ -396,8 +393,6 @@ if ($mode == 'init') {
             chmod($value.'/score', 0777);
             file_put_contents($value.'/money', 0);
             chmod($value.'/money', 0777);
-            file_put_contents($value.'/age', 0);
-            chmod($value.'/age', 0777);
             file_put_contents($value.'/born', $today);
             chmod($value.'/born', 0777);
         }
