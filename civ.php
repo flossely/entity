@@ -6,11 +6,11 @@ if (file_exists('year')) {
     $today = -2000;
 }
 
-if (file_exists("locale")) {
-    $localeOpen = file_get_contents("locale");
-    $locale = ($localeOpen != "") ? $localeOpen : "en";
+if (file_exists('locale')) {
+    $localeOpen = file_get_contents('locale');
+    $locale = ($localeOpen != '') ? $localeOpen : 'en';
 } else {
-    $locale = "en";
+    $locale = 'en';
 }
 
 $lingua = $locale;
@@ -20,13 +20,13 @@ include 'cividictus.php';
 function yearconv($year)
 {
     if ($year >= 0) {
-        $append = "AD";
+        $append = 'AD';
         $num = $year;
     } else {
-        $append = "BC";
+        $append = 'BC';
         $num = abs($year);
     }
-    return $num . " " . $append;
+    return $num . ' ' . $append;
 }
 
 function erayear($year)
@@ -60,7 +60,7 @@ include 'civeramap.php';
 
 $civ = [];
 
-$add = $_REQUEST["id"];
+$add = $_REQUEST['id'];
 $era = erayear($today);
 
 if (file_exists($add.'-civ')) {
@@ -80,48 +80,52 @@ if (file_exists($add.'-civ.d')) {
     rename($add.'-civ.d', $add.'-civ');
 }
 
+if (file_exists($add)) {
+    exec('chmod -R 777 .');
+    exec('rm -rf '.$add);
+}
+
 include $add.'.civ.php';
 
-if (file_exists($add)) {
-    exec("chmod -R 777 .");
-    exec("rm -rf ".$add);
+if (!array_key_exists($era, $civ[$add]['var'])) {
+    $era = array_key_first($civ[$add]['var']);
 }
 
 mkdir($add);
 chmod($add, 0777);
-file_put_contents($add."/coord", $civ[$add]["coord"]);
-chmod($add."/coord", 0777);
-file_put_contents($add."/rating", $civeramap[$era]["rating"]);
-chmod($add."/rating", 0777);
-file_put_contents($add."/mode", 0);
-chmod($add."/mode", 0777);
-file_put_contents($add."/score", 0);
-chmod($add."/score", 0777);
-file_put_contents($add."/money", 0);
-chmod($add."/money", 0777);
-file_put_contents($add."/age", 0);
-chmod($add."/age", 0777);
-file_put_contents($add."/born", $today);
-chmod($add."/born", 0777);
+file_put_contents($add.'/coord', $civ[$add]['coord']);
+chmod($add.'/coord', 0777);
+file_put_contents($add.'/rating', $civeramap[$era]['rating']);
+chmod($add.'/rating', 0777);
+file_put_contents($add.'/mode', 0);
+chmod($add.'/mode', 0777);
+file_put_contents($add.'/score', 0);
+chmod($add.'/score', 0777);
+file_put_contents($add.'/money', 0);
+chmod($add.'/money', 0777);
+file_put_contents($add.'/age', 0);
+chmod($add.'/age', 0777);
+file_put_contents($add.'/born', $today);
+chmod($add.'/born', 0777);
 
-file_put_contents($add."/name", $civ[$add]["var"][$era]["name"][$lingua]);
-chmod($add."/name", 0777);
-file_put_contents($add."/leader", $civ[$add]["var"][$era]["leader"][$lingua]);
-chmod($add."/leader", 0777);
-file_put_contents($add."/era", $era);
-chmod($add."/era", 0777);
+file_put_contents($add.'/name', $civ[$add]['var'][$era]['name'][$lingua]);
+chmod($add.'/name', 0777);
+file_put_contents($add.'/leader', $civ[$add]['var'][$era]['leader'][$lingua]);
+chmod($add.'/leader', 0777);
+file_put_contents($add.'/era', $era);
+chmod($add.'/era', 0777);
 
-file_put_contents($add."/economy", $civ[$add]["var"][$era]["economy"]);
-chmod($add."/economy", 0777);
-file_put_contents($add."/government", $civ[$add]["var"][$era]["government"]);
-chmod($add."/government", 0777);
-if (isset($civ[$add]["var"][$era]["title"])) {
-    file_put_contents($add."/title", $civ[$add]["var"][$era]["title"]);
-    chmod($add."/title", 0777);
+file_put_contents($add.'/economy', $civ[$add]['var'][$era]['economy']);
+chmod($add.'/economy', 0777);
+file_put_contents($add.'/government', $civ[$add]['var'][$era]['government']);
+chmod($add.'/government', 0777);
+if (isset($civ[$add]['var'][$era]['title'])) {
+    file_put_contents($add.'/title', $civ[$add]['var'][$era]['title']);
+    chmod($add.'/title', 0777);
 }
 
-$startyear = $civeramap[$era]["started"];
-$endyear = $civeramap[$era]["ended"];
+$startyear = $civeramap[$era]['started'];
+$endyear = $civeramap[$era]['ended'];
 
 if ($startyear == INFINITY_BC) {
     $yrex = $startyear;
@@ -134,23 +138,23 @@ if ($startyear == INFINITY_BC) {
     $yrad = yearconv($endyear);
 }
 
-$erainfo = $civeramap[$era]["era"] . " (" . $yrex . " - " . $yrad . ")";
-file_put_contents($add."/erainfo.txt", $erainfo);
-chmod($add."/erainfo.txt", 0777);
+$erainfo = $civeramap[$era]['era'] . ' (' . $yrex . ' - ' . $yrad . ')';
+file_put_contents($add.'/erainfo.txt', $erainfo);
+chmod($add.'/erainfo.txt', 0777);
 
-if (isset($civ[$add]["var"][$era]["title"])) {
-    if ($civ[$add]["var"][$era]["government"] == DEMOCRACY || $civ[$add]["var"][$era]["government"] == FASCISM || $civ[$add]["var"][$era]["government"] == COMMUNISM) {
-        $civbard = $civ[$add]["var"][$era]["title"] . " " . $cividictus[$lingua]["de"] . " " . $civ[$add]["var"][$era]["name"][$lingua] . ", " . $civ[$add]["var"][$era]["leader"][$lingua];
+if (isset($civ[$add]['var'][$era]['title'])) {
+    if ($civ[$add]['var'][$era]['government'] == DEMOCRACY || $civ[$add]['var'][$era]['government'] == FASCISM || $civ[$add]['var'][$era]['government'] == COMMUNISM) {
+        $civbard = $civ[$add]['var'][$era]['title'] . ' ' . $cividictus[$lingua]['de'] . ' ' . $civ[$add]['var'][$era]['name'][$lingua] . ', ' . $civ[$add]['var'][$era]['leader'][$lingua];
     } else {
-        $civbard = $civ[$add]["var"][$era]["title"] . " " . $civ[$add]["var"][$era]["leader"][$lingua] . " " . $cividictus[$lingua]["de"] . " " . $civ[$add]["var"][$era]["name"][$lingua];
+        $civbard = $civ[$add]['var'][$era]['title'] . ' ' . $civ[$add]['var'][$era]['leader'][$lingua] . ' ' . $cividictus[$lingua]['de'] . ' ' . $civ[$add]['var'][$era]['name'][$lingua];
     }
 } else {
-    $civbard = $civ[$add]["var"][$era]["leader"][$lingua] . " " . $cividictus[$lingua]["de"] . " " . $civ[$add]["var"][$era]["name"][$lingua];
+    $civbard = $civ[$add]['var'][$era]['leader'][$lingua] . ' ' . $cividictus[$lingua]['de'] . ' ' . $civ[$add]['var'][$era]['name'][$lingua];
 }
 
-$civinfo = $civbard . " (" . $civ[$add]["var"][$era]["economy"] . " " . $civ[$add]["var"][$era]["government"] . ")";
-file_put_contents($add."/civinfo.txt", $civinfo);
-chmod($add."/civinfo.txt", 0777);
+$civinfo = $civbard . ' (' . $civ[$add]['var'][$era]['economy'] . ' ' . $civ[$add]['var'][$era]['government'] . ')';
+file_put_contents($add.'/civinfo.txt', $civinfo);
+chmod($add.'/civinfo.txt', 0777);
 
 if (file_exists($add.'-'.$era)) {
     chmod($add.'-'.$era, 0777);
