@@ -1,5 +1,11 @@
 <?php
 
+if (file_exists('year')) {
+    $today = file_get_contents('year');
+} else {
+    $today = -2000;
+}
+
 if (file_exists("locale")) {
     $localeOpen = file_get_contents("locale");
     $locale = ($localeOpen != "") ? $localeOpen : "en";
@@ -22,9 +28,6 @@ function yearconv($year)
     }
     return $num . " " . $append;
 }
-
-include 'civconst.php';
-include 'civeramap.php';
 
 function erayear($year)
 {
@@ -52,14 +55,12 @@ function erayear($year)
     return $getEra;
 }
 
+include 'civconst.php';
+include 'civeramap.php';
+
 $civ = [];
 
 $add = $_REQUEST["id"];
-if (file_exists('year')) {
-    $today = file_get_contents('year');
-} else {
-    $today = -2000;
-}
 $era = erayear($today);
 
 if (file_exists($add.'-civ')) {
