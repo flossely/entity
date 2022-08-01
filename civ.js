@@ -1,4 +1,4 @@
-function civ(id, era, bulk)
+function civ(id, bulk)
 {
     if (window.XMLHttpRequest) {
         xmlhttp=new XMLHttpRequest();
@@ -12,6 +12,20 @@ function civ(id, era, bulk)
             }
         }
     }
-    xmlhttp.open("GET","civ.php?id="+id+"&era="+era,false);
+    xmlhttp.open("GET","civ.php?id="+id,false);
     xmlhttp.send();
+}
+function timeTravel(era) {
+    var eras = [];
+    eras['i'] = -2000;
+    eras['ii'] = -1000;
+    eras['iii'] = 476;
+    eras['iv'] = 1500;
+    eras['v'] = 1700;
+    eras['vi'] = 1900;
+    eras['vii'] = 1950;
+    eras['viii'] = 1990;
+    eras['ix'] = 2050;
+    eras['x'] = 2100;
+    set('year', eras[era], true);
 }

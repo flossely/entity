@@ -37,6 +37,8 @@ if ($key == 'i') {
         chmod($repo.'/score', 0777);
         file_put_contents($repo.'/money', 0);
         chmod($repo.'/money', 0777);
+        file_put_contents($repo.'/age', 0);
+        chmod($repo.'/age', 0777);
     }
     
 // IN CASE YOU WANT TO REPLACE PACKAGE WITH NEW

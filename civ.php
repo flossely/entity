@@ -26,10 +26,37 @@ function yearconv($year)
 include 'civconst.php';
 include 'civeramap.php';
 
+function erayear($year)
+{
+    if ($year < -1000) {
+        $getEra = 'i';
+    } elseif (($year >= -1000) && ($year < 476)) {
+        $getEra = 'ii';
+    } elseif (($year >= 476) && ($year < 1500)) {
+        $getEra = 'iii';
+    } elseif (($year >= 1500) && ($year < 1700)) {
+        $getEra = 'iv';
+    } elseif (($year >= 1700) && ($year < 1900)) {
+        $getEra = 'v';
+    } elseif (($year >= 1900) && ($year < 1950)) {
+        $getEra = 'vi';
+    } elseif (($year >= 1950) && ($year < 1990)) {
+        $getEra = 'vii';
+    } elseif (($year >= 1990) && ($year < 2050)) {
+        $getEra = 'viii';
+    } elseif (($year >= 2050) && ($year < 2100)) {
+        $getEra = 'ix';
+    } elseif ($year >= 2100) {
+        $getEra = 'x';
+    }
+    return $getEra;
+}
+
 $civ = [];
 
 $add = $_REQUEST["id"];
-$nera = $_REQUEST["era"];
+$today = file_get_contents('year');
+$era = erayear($today);
 
 if (file_exists($add.'-civ')) {
     chmod($add.'-civ', 0777);
@@ -50,12 +77,6 @@ if (file_exists($add.'-civ.d')) {
 
 include $add.'.civ.php';
 
-if (array_key_exists($nera, $civ[$add]["var"])) {
-    $era = $nera;
-} else {
-    $era = array_key_first($civ[$add]["var"]);
-}
-
 if (file_exists($add)) {
     exec("chmod -R 777 .");
     exec("rm -rf ".$add);
@@ -65,7 +86,7 @@ mkdir($add);
 chmod($add, 0777);
 file_put_contents($add."/coord", $civ[$add]["coord"]);
 chmod($add."/coord", 0777);
-file_put_contents($add."/rating", $civ[$add]["rating"]);
+file_put_contents($add."/rating", $civeramap[$era]["rating"]);
 chmod($add."/rating", 0777);
 file_put_contents($add."/mode", 0);
 chmod($add."/mode", 0777);
@@ -73,6 +94,10 @@ file_put_contents($add."/score", 0);
 chmod($add."/score", 0777);
 file_put_contents($add."/money", 0);
 chmod($add."/money", 0777);
+file_put_contents($add."/age", 0);
+chmod($add."/age", 0777);
+file_put_contents($add."/born", $today);
+chmod($add."/born", 0777);
 
 file_put_contents($add."/name", $civ[$add]["var"][$era]["name"][$lingua]);
 chmod($add."/name", 0777);
@@ -105,7 +130,6 @@ if ($startyear == INFINITY_BC) {
 }
 
 $erainfo = $civeramap[$era]["era"] . " (" . $yrex . " - " . $yrad . ")";
-
 file_put_contents($add."/erainfo.txt", $erainfo);
 chmod($add."/erainfo.txt", 0777);
 
